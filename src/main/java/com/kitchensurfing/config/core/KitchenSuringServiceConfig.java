@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Import;
 //引入配置的xml文件 @ImportResource()
 @Import(value = { KitchenSuringDaoConfig.class })
 //扫描的包名
-@ComponentScan(basePackages={"com.kitchensurfing.idaoimpl"})
+@ComponentScan(basePackages={"com.kitchensurfing.idaoimpl","com.kitchensurfing.iservice"
+		,"com.kitchensurfing.serviceimpl"})
+
 public class KitchenSuringServiceConfig {
 	
 	

@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.kitchensurfing.exception.InvalidGenderException;
 import com.kitchensurfing.po.User;
+import com.kitchensurfing.po.User.Gender;
 
 public class UserRowMapper implements Serializable,RowMapper<User> {
 
@@ -19,7 +21,19 @@ public class UserRowMapper implements Serializable,RowMapper<User> {
 		user.setAddress(resultSet.getString("address"));
 		user.setBirthday(resultSet.getString("birthday"));
 		user.setFirstName(resultSet.getString("first_name"));
-		user.setGender(resultSet.getString("gender"));
+		try {
+			if(resultSet.getString("gender")==null)
+				user.setGender(null);
+			else if(resultSet.getString("gender").equals("male"))
+				user.setGender(Gender.MALE);
+			else if(resultSet.getString("gender").equals("female"))
+				user.setGender(Gender.FEMALE);
+			else
+				throw new InvalidGenderException("The user has made a gender mistake!");
+		} catch (InvalidGenderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		user.setLastName(resultSet.getString("last_name"));
 		user.setLocationId(resultSet.getInt("location_id"));
 		user.setProfile_photo(resultSet.getString("profile_photo"));

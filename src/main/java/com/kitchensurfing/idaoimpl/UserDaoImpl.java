@@ -6,10 +6,12 @@ package com.kitchensurfing.idaoimpl;
  * I find that the standard way to access as list is via the query() methods rather than any of the other approaches. 
  * The main difference between query and the other methods is that you'll have to implement one of the callback interfaces
  *  (either RowMapper, RowCallbackHandler, or ResultSetExtractor) to handle your result set.
+ *  <T> List<T> query(String sql, RowMapper<T> rowMapper)
  * @author Hansel
  * @time
  * @description  here are few methods to show you how to use jdbc template to query or extract data from database
  */
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,14 +25,17 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.kitchensurfing.exception.InvalidGenderException;
 import com.kitchensurfing.idao.IUserDao;
 import com.kitchensurfing.po.User;
+import com.kitchensurfing.po.User.Gender;
 
 @Repository
 public class UserDaoImpl implements IUserDao {
@@ -46,6 +51,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return User
 	 * @param int userId
 	 * RowCallbackHandler method uage
+	 * <T> List<T> query(String sql, RowCallbackHandler<T> rowCallbackHandler)
 	 */
 	public User getUserById(final int userId){
 		final User user=new User();
@@ -58,7 +64,19 @@ public class UserDaoImpl implements IUserDao {
 				user.setAddress(resultSet.getString("address"));
 				user.setBirthday(resultSet.getString("birthday"));
 				user.setFirstName(resultSet.getString("first_name"));
-				user.setGender(resultSet.getString("gender"));
+				try {
+					if(resultSet.getString("gender")==null)
+						user.setGender(null);
+					else if(resultSet.getString("gender").equals("male"))
+						user.setGender(Gender.MALE);
+					else if(resultSet.getString("gender").equals("female"))
+						user.setGender(Gender.FEMALE);
+					else
+						throw new InvalidGenderException("The user has made a gender mistake!");
+				} catch (InvalidGenderException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				user.setLastName(resultSet.getString("last_name"));
 				user.setLocationId(resultSet.getInt("location_id"));
 				user.setProfile_photo(resultSet.getString("profile_photo"));
@@ -167,8 +185,8 @@ public class UserDaoImpl implements IUserDao {
 		}
 		return result;
 	}
-/*	public <T> boolean isUserExists(Class<T>){
-		
+	/*	public <T> boolean isUserExists(Class<T>){
+
 	}*/
 	/**
 	 * @return
@@ -206,7 +224,19 @@ public class UserDaoImpl implements IUserDao {
 					user.setAddress(resultSet.getString("address"));
 					user.setBirthday(resultSet.getString("birthday"));
 					user.setFirstName(resultSet.getString("first_name"));
-					user.setGender(resultSet.getString("gender"));
+					try {
+						if(resultSet.getString("gender")==null)
+							user.setGender(null);
+						else if(resultSet.getString("gender").equals("male"))
+							user.setGender(Gender.MALE);
+						else if(resultSet.getString("gender").equals("female"))
+							user.setGender(Gender.FEMALE);
+						else
+							throw new InvalidGenderException("The user has made a gender mistake!");
+					} catch (InvalidGenderException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					user.setLastName(resultSet.getString("last_name"));
 					user.setLocationId(resultSet.getInt("location_id"));
 					user.setProfile_photo(resultSet.getString("profile_photo"));
@@ -222,11 +252,78 @@ public class UserDaoImpl implements IUserDao {
 	/**
 	 * this is the second ways to complete
 	 * get all users via RowMapper
-	 * @return
+	 * 通过RowMapper将每行映射成为一个java对象。 使用一个JDBC
+Statement，而不是使用预编译的的PrepareStatement。如果想用PrepareStatement执行 一个查询，使用重载的方法。
+	 * @return list
+	 * <T> List<T> query(String sql, RowMapper<T> rowMapper)
 	 */
 	public List<User> selectAll() throws DataAccessException{
 		String sql="select * from ks_user";
 		return this.jdbcTemplate.query(sql,new UserRowMapper());
+	}
+	/**
+	 * this is the second ways to complete
+	 * get all users via RowMapper
+	 * PrepareStatement执行 一个查询，。
+	 * @return list
+	 * <T> List<T> query(String sql, Object[] args, RowMapper<T> rowMapper)
+	 */
+	public List<User> queryAll() throws DataAccessException{
+		String sql="select * from ks_user";
+		return this.jdbcTemplate.query(sql,new Object[]{},new UserRowMapper());
+	}
+	/**
+	 * this is the second ways to complete
+	 * get all users via RowMapper
+	 * PrepareStatement执行 一个查询，。
+	 * @return list
+	 * <T> List<T> query(String sql, Object[] args, int[] argTypes, RowMapper<T> rowMapper)
+	 */
+	public List<User> queryAllUser() throws DataAccessException{
+		String sql="select * from ks_user";
+		return this.jdbcTemplate.query(sql,new Object[]{},new int[]{java.sql.Types.ARRAY},new UserRowMapper());
+	}
+	/**
+	 * 
+	 * @return list
+	 * <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... args)
+	 */
+	public List<User> queryUser(final String username) throws DataAccessException{
+		String sql="select * from ks_user u where u.username=?";
+		return this.jdbcTemplate.query(sql,new UserRowMapper(),username);
+	}
+	/**
+	 * 
+	 * @return list
+	 * <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... args)
+	 */
+	public List<User> queryAUser(final String username) throws DataAccessException{
+		String sql="select * from ks_user u where u.username=?";
+		return this.jdbcTemplate.query(new PreparedStatementCreator() {
+
+			public PreparedStatement createPreparedStatement(Connection arg0)
+					throws SQLException {
+				// TODO Auto-generated method stub
+				return null;
+			}}, new UserRowMapper()
+				);
+	}
+	/**
+	 * 
+	 * @return list
+	 * <T> List<T> query(String sql, PreparedStatementSetter pss, RowMapper<T> rowMapper)
+	 */
+	public List<User> queryAnUser(final String username) throws DataAccessException{
+		String sql="select * from ks_user u where u.username=?";
+		return this.jdbcTemplate.query(sql,new PreparedStatementSetter() {
+
+			public void setValues(PreparedStatement arg0) throws SQLException {
+				// TODO Auto-generated method stub
+
+			}
+
+		}, new UserRowMapper()
+				);
 	}
 	/**
 	 * here is the queryForList method of jdbcTemplate
@@ -234,6 +331,7 @@ public class UserDaoImpl implements IUserDao {
 	 *   of the map is the table's field name and the value is
 	 * the table's field value.
 	 * good luck for you
+	 * <T> List<T> queryForList(String sql)
 	 */
 	public List<Map<String,Object>> getAll() throws DataAccessException{
 		String sql="select * from ks_user";

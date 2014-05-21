@@ -1,6 +1,8 @@
 package com.kitchensurfing.config.core;
 
 
+import java.util.List;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -18,9 +20,13 @@ public class Test {
 
 			User user = new User("user", "dsfsdf");
 
-			ds.addUser(user);
+			//ds.addUser(user);
 			// Connection conn=ds.getConnection();
-
+			UserDaoImpl dss = new UserDaoImpl();
+			List<User> list=dss.getAllUser();
+		   for(User users:list){
+			   System.out.println(users.getAccount());
+		   }
 		} catch (BeansException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

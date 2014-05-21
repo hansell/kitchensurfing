@@ -1,4 +1,4 @@
-package com.kitchensurfing.serviceimpl.test;
+package com.kitchensurfing.serviceimpl;
 
 import static org.junit.Assert.*;
 
