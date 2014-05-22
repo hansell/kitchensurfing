@@ -16,7 +16,6 @@
 <!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
 	<context:component-scan base-package="com.kitchensurfing.control" />
 
-    <mvc:default-servlet-handler/>
     
 	<!-- 手工配置，主要是需要处理json -->
 	<bean
@@ -46,6 +45,8 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<!-- prefix 的值可以是/WEB-INFO/jsp/ -->
 		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp,.html" />
+		<property name="suffix" value=".html" />
 	</bean>
+	 <mvc:default-servlet-handler/>
+    
 </beans>

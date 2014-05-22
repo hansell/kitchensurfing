@@ -14,14 +14,14 @@
 			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		</param-value>
 	</context-param>
- <!--  Spring 服务层的配置文件 -->
+	<!-- Spring 服务层的配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			com.kitchensurfing.config.core.KitchenSuringServiceConfig
 		</param-value>
 	</context-param>
- <!--  Spring 容器启动监听器 -->
+	<!-- Spring 容器启动监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -29,11 +29,37 @@
 	<servlet>
 		<servlet-name>kitchenSurfing</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	
+
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>kitchenSurfing</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<!-- encoding filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<error-page>
+	  <error-code>500</error-code>
+	  <location>/500.html</location>
+	</error-page>
+	<error-page>
+	  <error-code>404</error-code>
+	  <location>/404.html</location>
+	</error-page>
+	<error-page>
+	   <exception-type>java.lang.Exception</exception-type>
+	   <location>/UnCautchException</location>
+	</error-page>
 </web-app>
