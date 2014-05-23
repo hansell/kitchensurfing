@@ -130,7 +130,7 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	public boolean addUser(final User user) throws DataAccessException{
 
-		String sql = "insert into  ks_user(account,user_password,username) values(?,?,?,?)";
+		String sql = "insert into  ks_user(account,user_password,username,create_user_date) values(?,?,?,?)";
 		//Object params=new Object[]{1,user.getAccount(),user.getUserPassword(),user.getUsername()};
 		// int[] argTypes=new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR};
 		//jdbcTemplate.query(sql, params, argTypes, new ResultSetExtractor<User>());
