@@ -23,13 +23,13 @@ public class KitchenSuringDaoConfig {
 		dataSource.setUsername(env.getProperty("jdbc.username"));
 		dataSource.setPassword(env.getProperty("jdbc.password"));
 		//#<!-- 初始化连接 -->
-		dataSource.setInitialSize(env.getProperty("jdbc.password",Integer.class));
+		dataSource.setInitialSize(env.getProperty("jdbc.initialSize",Integer.class));
 		//#最大连接数量
-		dataSource.setMaxActive(env.getProperty("jdbc.password",Integer.class));
+		dataSource.setMaxActive(env.getProperty("jdbc.maxActive",int.class));
 	   // 最大空闲连接 -->
-		dataSource.setMaxIdle(env.getProperty("jdbc.password",int.class));
+		dataSource.setMaxIdle(env.getProperty("jdbc.maxIdle",int.class));
 		//<!-- 最小空闲连接 -->
-		dataSource.setMinIdle(env.getProperty("jdbc.password",int.class));
+		dataSource.setMinIdle(env.getProperty("jdbc.minIdle",int.class));
 		//#是否在自动回收超时连接的时候打印连接的超时错误
 		dataSource.setLogAbandoned(env.getProperty("jdbc.logAbandoned",Boolean.class));
 		//#是否自动回收超时连接
