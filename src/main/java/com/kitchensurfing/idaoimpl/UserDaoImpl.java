@@ -11,6 +11,7 @@ package com.kitchensurfing.idaoimpl;
  * @time
  * @description  here are few methods to show you how to use jdbc template to query or extract data from database
  */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,6 +37,7 @@ import com.kitchensurfing.exception.InvalidGenderException;
 import com.kitchensurfing.idao.IUserDao;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.po.User.Gender;
+
 
 @Repository
 public class UserDaoImpl implements IUserDao {
