@@ -1,5 +1,7 @@
 package com.kitchensurfing.idao;
 
+import java.util.List;
+
 import com.kitchensurfing.po.Location;
 
 /**
@@ -8,6 +10,8 @@ import com.kitchensurfing.po.Location;
  *
  */
 public interface ILocationDao {
-   Location getLocation(int id);
-   
+   Location getLocation(final int id);
+   int getRowCount();
+   Location getLocation(final String name);
+   List<Location> getLocation();
 }

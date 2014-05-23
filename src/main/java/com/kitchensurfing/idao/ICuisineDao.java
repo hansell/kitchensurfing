@@ -12,6 +12,6 @@ import com.kitchensurfing.po.Cuisine;
 public interface ICuisineDao {
   Cuisine getCuisine(int id);
   Cuisine fetchCuisine(String name);
-  String getCuisineName();
+  int getRowCount();
   List<Cuisine> queryAllCuisine();
 }
