@@ -2,8 +2,11 @@ package com.kitchensurfing.idaoimpl;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*; 
+
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +20,13 @@ import org.junit.Test;
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.kitchensurfing.common.DateTimeUtil;
+import com.kitchensurfing.common.MD5MessageDigest;
 import com.kitchensurfing.config.core.KitchenSuringServiceConfig;
 import com.kitchensurfing.idaoimpl.UserDaoImpl;
 import com.kitchensurfing.po.User;
 
+import static com.kitchensurfing.common.MD5MessageDigest.Md5Encode;
 /**
  * 
  * @author Hansel
@@ -49,26 +55,29 @@ public class UserDaoImplTester {
 	   @Test 
 	   public void getUserPasswordByAccount(){
 		  //assertEquals("dd", ds.getUserPassword(2));
-		   assertEquals("i love you 520", ds.getUserPassword("919183005@qq.com"));
+		   System.out.println(ds.getUserPassword("919183005@qq.com"));
 	   }
 	   /**
 	    * Hamcrest
 	    */
 	   @Test
 	   public void getUserPasswordByUserId(){
-		   assertEquals("xiaoyingfeng2012", ds.getUserPassword(2));
+		   assertEquals("654486cf578e5023c6571228d9b02211", ds.getUserPassword(5));
 		   assertThat("", anything());
 	   }
-	   @Ignore("I have run")  
+	 @Ignore("I have run")  
 	 @Test
-	 public void addUser(){
-		 assertTrue(ds.addUser(new User(1,"anna","919183005@qq.com","i love you 520")));
-		 assertTrue(ds.addUser(new User(1,"hansell","xiaoyingfeng2012@gmail.com","xiaoyingfeng2012")));
+	 public void addUser() throws NoSuchAlgorithmException{
+		User user= new User("anna","919183005@qq.com",MD5MessageDigest.Md5Encode("666666")
+	 ,DateTimeUtil.date2String(new Date(), "yyyy-MM-dd hh:mm:ss"));
+		 assertTrue(ds.addUser(user));
+		 assertTrue(ds.addUser(  new User("hansell","xiaoyingfeng2012@gmail.com",MD5MessageDigest.Md5Encode("xiaoyingfeng2012"),
+				 DateTimeUtil.date2String(new Date(), "yyyy-MM-dd hh:mm:ss")	 )));
 	 }
 	@Test
 	public void getUser(){
 		assert(collection.size()==1);
-		User user=ds.getUser("919183005@qq.com", "i love you 520");
+		User user=ds.getUser("919183005@qq.com", "f379eaf3c831b04de153469d1bec345e");
 		assertTrue(user.getUsername().equals("anna"));
 		System.out.println(user.getUserPassword()+"---------------------");
 	}
@@ -81,7 +90,7 @@ public class UserDaoImplTester {
 	}
 	@Test
 	public void isUserExists(){
-		assertTrue(ds.isUserExists(new User("hansell","xiaoyingfeng2012@gmail.com", "xiaoyingfeng2012")));
+		assertTrue(ds.isUserExists(new User("hansell","xiaoyingfeng2012@gmail.com", "654486cf578e5023c6571228d9b02211")));
 		assertTrue(ds.isUserExists("hanselldd"));
 	}
    @Test
@@ -89,7 +98,7 @@ public class UserDaoImplTester {
 	   
 	   List<User> list=ds.getAllUser();
 		  for (User user:list){
-			  System.out.println(user.getAccount());
+			  System.out.println(user.getAccount()+"---"+user.getUserPassword());
 		  }
 	}
    @Test
