@@ -60,6 +60,15 @@ public class User  implements Serializable{
 		this.userPassword = userPassword;
 	}
 
+	public User(String username, String account, String userPassword,
+			String createUserDate) {
+		super();
+		this.username = username;
+		this.account = account;
+		this.userPassword = userPassword;
+		this.createUserDate = createUserDate;
+	}
+
 	public User(int userId, int locationId, String username, String account,
 			String userPassword, Gender gender, String birthday,
 			String address, String profile_photo, String firstName,
