@@ -48,8 +48,8 @@
 		<property name="suffix" value=".jsp,.html" />
 	</bean>
 	 <mvc:default-servlet-handler/>
-      <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>  
+    <!--    <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>  
       <mvc:view-controller path="/" view-name="redirect:/index.html"/>
-     
+     -->
     
 </beans>
