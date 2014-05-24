@@ -45,7 +45,7 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<!-- prefix 的值可以是/WEB-INFO/jsp/ -->
 		<property name="prefix" value="/project/pages/" /> 
-		<property name="suffix" value=".html" />
+		<property name="suffix" value=".jsp,.html" />
 	</bean>
 	 <mvc:default-servlet-handler/>
       <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>  
