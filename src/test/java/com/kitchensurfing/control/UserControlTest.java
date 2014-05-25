@@ -12,7 +12,9 @@ import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.kitchensurfing.iservice.IUserService;
 import com.kitchensurfing.serviceimpl.UserService;
@@ -25,13 +27,16 @@ public class UserControlTest {
    private MockMvc mockMvc;
    
    @Autowired
-   private IUserService userSerivce;
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
+   private WebApplicationContext ctx;
 	@Before
 	public void setUp() throws Exception {
+		/* InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+	        viewResolver.setPrefix("/WEB-INF/jsp/view/");
+	        viewResolver.setSuffix(".jsp");
+
+	        mockMvc = MockMvcBuilders.standaloneSetup()
+	                                 .setViewResolvers(viewResolver)
+	                                 .build();*/
 	}
 
 	@Test
