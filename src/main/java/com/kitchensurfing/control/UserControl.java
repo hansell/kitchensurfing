@@ -1,11 +1,9 @@
 package com.kitchensurfing.control;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,7 @@ import com.kitchensurfing.serviceimpl.UserService;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 
 @Controller
+@RequestMapping("/usercontrol")
 public class UserControl implements Serializable{
 
 	private static final Logger LOG=Logger.getLogger(UserControl.class);
@@ -48,12 +47,12 @@ public class UserControl implements Serializable{
 	public String logined(HttpServletRequest request,
 			@RequestParam(value="account" ,required=true) String account,
 			@RequestParam(value="password",required=true) String userPassword){
-		String isValidUserS="login";
+		String isValidUserS="redirect:/index.html";
 		try {
 			boolean isValidUser=userService.logIn(account, MD5MessageDigest.Md5Encode(userPassword));
 			if(isValidUser){
 				
-				isValidUserS="redirect:homepage.jsp";
+				isValidUserS="homepage";
 			}
 			else{
 				request.setAttribute("msg", "none");

@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="plugin/bootstap/css/bootstrap.css">
+<!-- 弹出框插件 -->
+<link href="plugin/bootstrap-plugin/dialog/css/bootstrap-dialog.min.css"
+	rel="stylesheet" type="text/css" />
 
 <style>
 .user-nav {
@@ -221,7 +224,7 @@ background:grey;
 <body>
 
 
-	<div class="navbar   navbar-fixed-top" role="navigation">
+<div class="navbar   navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -253,10 +256,10 @@ background:grey;
 					<li><a href="#about">博客</a></li>
 				</ul>
 
-				<form class="navbar-form navbar-right" role="form" action="/login"
+				<form class="navbar-form navbar-right" role="form" action="/KitchenSurfing/usercontrol/login"
 					method="post">
 					<div class="form-group">
-						<input type="text" name="username" placeholder="用户名"
+						<input type="text" name="account" placeholder="用户名"
 							class="form-control">
 					</div>
 					<div class="form-group">
@@ -264,7 +267,7 @@ background:grey;
 							class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">登陆</button>
-					<button type="submit" class="btn btn-info">注册</button>
+					<a class="btn btn-info  register">注册</a>
 				</form>
 			</div>
 			<!--/.nav-collapse -->
@@ -665,5 +668,59 @@ background:grey;
 	</footer>
 	<script src="plugin/jquery/jquery.js"></script>
 	<script src="plugin/bootstap/js/bootstrap.js"></script>
+	<script src="plugin/bootstrap-plugin/dialog/js/bootstrap-dialog.min.js"></script>
+	<script type="text/javascript">
+		$(".register")
+				.click(
+						function() {
+
+							var form = "<form class=\"registerform\" role=\"form\" method=\"POST\"  action=\"/KitchenSurfing/usercontrol/registeruser.do\">"
+									+ "<div class=\"form-group\">"
+									+ "<label for=\"name\">用户名</label> "
+									+ "<input type=\"text\" class=\"form-control\"   name=\"username\" "+
+			                           " placeholder=\"用户名\">"
+									+ "</div>"
+									+ "<div class=\"form-group\">"
+									+ "   <label for=\"name\">邮箱</label> "
+									+ "   <input type=\"text\" class=\"form-control\"  name=\"email\" placeholder=\"邮箱\"> "
+									+ " </div>"
+									+ "<div class=\"form-group\">"
+									+ "   <label for=\"name\">密码</label> "
+									+ "   <input type=\"password\" class=\"form-control\"  name=\"password\"  placeholder=\"密码\"> "
+									+ " </div>"
+									+ "  <div "
+									+ "     <label>"
+									+ "     <span style='color:red'>[*]</span>至少一个小写字母,一个数字和多个字符"
+									+ "     </label>"
+									+ "  </div> "
+									+ "</form> ";
+
+							BootstrapDialog.show({
+								title : '用户注册',
+								message : form,
+								buttons : [ {
+									id : 'btn-ok',
+									icon : 'glyphicon glyphicon-check',
+									label : '注册',
+									cssClass : 'btn-primary',
+									autospin : false,
+									action : function(dialogRef) {
+										//dialogRef.close();
+										$(".registerform").submit();
+									}
+								}, {
+									id : 'btn-cancel',
+									icon : 'glyphicon  glyphicon-minus',
+									label : '取消',
+									cssClass : 'btn-info',
+									autospin : false,
+									action : function(dialogRef) {
+										dialogRef.close();
+									}
+								} ]
+							});
+
+						});
+	</script>
 </body>
 </html>
