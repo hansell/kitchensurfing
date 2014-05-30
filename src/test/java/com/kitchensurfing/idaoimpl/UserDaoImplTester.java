@@ -122,7 +122,7 @@ public class UserDaoImplTester {
 		} 
 	    /**
 	     * JUnit Ignore Test
-	     * This ¡°Ignored¡± means the method is not ready to test, the JUnit engine will just bypass this method.
+	     * This ï¿½ï¿½Ignoredï¿½ï¿½ means the method is not ready to test, the JUnit engine will just bypass this method.
 	     */
 	    @Ignore("Not Ready to Run")  
 		@Test
@@ -131,7 +131,7 @@ public class UserDaoImplTester {
 		}  
 	    /**
 	     * JUnit TimeOut Test
-	     * The ¡°Time Test¡± means if an unit test takes longer 
+	     * The ï¿½ï¿½Time Testï¿½ï¿½ means if an unit test takes longer 
 	     * than the specified number of milliseconds to run, the test will terminated and mark as failed.
 	     *
 	     */
@@ -148,5 +148,10 @@ public class UserDaoImplTester {
 	    public static void oneTimeTearDown() {
 	        // one-time cleanup code
 	    	System.out.println("@AfterClass - oneTimeTearDown");
+	    }
+	    @Test
+	    public void getUserByAccount(){
+	    	User user=ds.getUser("919183005@qq.com");
+	    	System.out.println(user.getUserPassword());
 	    }
 }
