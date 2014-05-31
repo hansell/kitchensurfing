@@ -30,7 +30,7 @@ public class UserControl implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	IUserService userService;
+	private IUserService userService;
 	private UserControl(){
 
 	}
