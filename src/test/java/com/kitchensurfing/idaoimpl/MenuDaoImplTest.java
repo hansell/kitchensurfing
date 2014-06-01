@@ -9,30 +9,25 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.kitchensurfing.config.core.KitchenSuringServiceConfig;
-import com.kitchensurfing.po.Chef;
+import com.kitchensurfing.po.Menu;
 
-public class ChefDaoImplTest {
+public class MenuDaoImplTest {
 
-	private static ChefDaoImpl ds;
+	private static MenuDaoImpl ds;
 	@Before
 	public void setUp() throws Exception {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 				KitchenSuringServiceConfig.class);
-		ds = ctx.getBean(ChefDaoImpl.class);
+		ds = ctx.getBean(MenuDaoImpl.class);
 		ctx.close();
 	}
 
-
 	@Test
 	public void test() {
-		Chef chef=ds.getChef(1);
-		System.out.println(chef.getAccount());
+		Menu menu=ds.getMenu(1);
+		System.out.println(menu.getChefId());
+		List<Menu> menus=ds.getMenuList(1);
+		System.out.println(menus.size());
 	}
-   @Test
-   public void testList(){
-	   List<Chef> chefs=ds.chefList(1);
-	   System.out.println(chefs.size());
-	   for(Chef chef:chefs)
-		   System.out.println(chef.getAccount());
-   }
+
 }

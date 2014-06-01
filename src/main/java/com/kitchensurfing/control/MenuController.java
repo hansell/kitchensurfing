@@ -42,6 +42,7 @@ public class MenuController implements Serializable {
 		AntPathMatcher apm = new AntPathMatcher();
 		String finalPath = apm.extractPathWithinPattern(bestMatchPattern, path);
 		String checkString="529d5a826325f3a8b7000035";
+		String add= (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 		String chefId="2";
 		int _chefId=Integer.parseInt(chefId);
 		//note this is the chefId or chefName
@@ -53,7 +54,7 @@ public class MenuController implements Serializable {
 			request.setAttribute("reviewCount", count);
 			request.setAttribute("chef", chef);
 			request.setAttribute("list", list);
-			System.out.println("------"+path+bestMatchPattern);
+			System.out.println("------"+path+bestMatchPattern+"add"+add);
 			return "chefintro";
 		}
 		else return "noResource";
