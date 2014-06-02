@@ -36,10 +36,15 @@ public class IndexController {
 	@RequestMapping(value = "/shanghai", method = RequestMethod.GET)  
 	public String getShanghai(HttpServletRequest request) throws IOException {  
 		User user=(User) request.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
-		if(user==null)
-			return "redirect:/pages/"+PAGE_INDEX;
-		else
-			return "homepage";
+		String view="homepage";
+		if(user==null){
+			request.setAttribute("lp", "shanghai");
+			return view;
+		}
+		else{
+			request.setAttribute("lp", "shanghai");
+			return view;
+		}
 	}  
 	@RequestMapping("/{id}")  
 	public ModelAndView view(@PathVariable("id") int id, HttpServletRequest req) {  

@@ -17,14 +17,11 @@ import org.springframework.stereotype.Repository;
 import com.kitchensurfing.idao.IMenuDao;
 import com.kitchensurfing.po.Menu;
 @Repository
-public class MenuDaoImpl implements Serializable, IMenuDao {
+public class MenuDaoImpl  extends BaseDaoImpl implements Serializable, IMenuDao {
 
-	private JdbcTemplate jdbcTemplate;
+
 	private static final long serialVersionUID = 1L;
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	
 
 	public Menu getMenu(final int id) {
 		// TODO Auto-generated method stub

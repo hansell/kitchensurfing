@@ -13,21 +13,12 @@ import com.kitchensurfing.exception.SQLErrorCodesTranslator;
 import com.kitchensurfing.idao.ICourseDao;
 import com.kitchensurfing.po.Course;
 @Repository
-public class CourseDaoImpl implements Serializable, ICourseDao {
+public class CourseDaoImpl  extends BaseDaoImpl implements Serializable, ICourseDao {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		 // create a custom translator and set the DataSource for the default translation lookup
-		SQLErrorCodesTranslator tr = new SQLErrorCodesTranslator();
-		    tr.setDataSource(dataSource);
-		    this.jdbcTemplate.setExceptionTranslator(tr);
-	}
 	public Course getCourse(int courseId) {
 		// TODO Auto-generated method stub
 		String sql="select * from ks_course co where co.course_id=?";

@@ -40,14 +40,8 @@ import com.kitchensurfing.po.User.Gender;
 
 
 @Repository
-public class UserDaoImpl implements IUserDao {
+public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 
-	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 
 	/**
 	 * @return User

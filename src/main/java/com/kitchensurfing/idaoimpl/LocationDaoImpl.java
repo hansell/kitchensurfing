@@ -19,18 +19,13 @@ import com.kitchensurfing.idao.ILocationDao;
 import com.kitchensurfing.po.Location;
 import com.kitchensurfing.po.User;
 @Repository
-public class LocationDaoImpl implements Serializable, ILocationDao {
+public class LocationDaoImpl  extends BaseDaoImpl implements Serializable, ILocationDao {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	
 	public Location getLocation(final int id) {
 		final Location location=new Location();
 		// TODO Auto-generated method stub
