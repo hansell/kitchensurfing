@@ -46,7 +46,9 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-
+<!-- Forwards requests to the "/" resource to the "welcome" view -->
+    <mvc:view-controller path="/" view-name="redirect:/shanghai"/>
+    <mvc:resources mapping="/pages/**" location="/" />
 	<mvc:default-servlet-handler />
 
 </beans>

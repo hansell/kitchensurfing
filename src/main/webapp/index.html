@@ -2,12 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KitchenSurfing: Find a Chef</title>
 <link rel="stylesheet" href="plugin/bootstap/css/bootstrap.css">
 <!-- 弹出框插件 -->
 <link href="plugin/bootstrap-plugin/dialog/css/bootstrap-dialog.min.css"
 	rel="stylesheet" type="text/css" />
-
 <style>
 .user-nav {
 	float: right;
@@ -203,20 +202,125 @@ a,a:hover,a:active,a:focus {
 	padding-bottom: 80px;
 	padding-top: 20px;
 }
+
 .col-sm-3 {
-width: 25%;
-padding-bottom: 20px;
-margin-right: 15px;
+	width: 25%;
+	padding-bottom: 20px;
+	margin-right: 15px;
 }
-.bloginfo{
-  padding-top:20px;
-  text-align:center;
+
+.bloginfo {
+	padding-top: 20px;
+	text-align: center;
 }
-.carousel-indicators .active{
-background:blue;
+
+.carousel-indicators .active {
+	background: blue;
 }
-.carousel-indicators li{
-background:grey;
+
+.carousel-indicators li {
+	background: grey;
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* line 2258, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/* line 2264, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  text-decoration: none;
+}
+
+/* line 2270, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+/* line 2278, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 2289, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn-default {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+/* line 2295, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+
+/* line 2305, ../../vendor/assets/stylesheets/bootstrap3.css.scss */
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-image: none;
+}
+/* line 1, ../../app/assets/stylesheets/homepage.css.sass */
+.btn-red, .btn-red:hover {
+  background: none;
+  background-color: #e95100;
+  color: white;
+  font-size: 18px;
+  border-radius: 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 1px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 1px 0px;
+}
+
+/* line 9, ../../app/assets/stylesheets/homepage.css.sass */
+.btn-gray, .btn-gray:hover {
+  background: none;
+  background-color: #f9f9f3;
+  color: #181812;
+  border-radius: 3px;
+  font-size: 18px;
+  border: 1px solid #d6d3cc;
 }
 </style>
 
@@ -224,7 +328,7 @@ background:grey;
 <body>
 
 
-<div class="navbar   navbar-fixed-top" role="navigation">
+	<div class="navbar   navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -233,7 +337,7 @@ background:grey;
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img
+				<a class="navbar-brand" href="/KitchenSurfing/shanghai"><img
 					alt="Kitchensurfing-logo-cropped@2x" class="img-responsive"
 					height="19" src="baseimages/kitchensurfing-logo.png" width="161"></a>
 
@@ -241,29 +345,28 @@ background:grey;
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="dropdown hidden-xs hidden-sm" id="city-dropdown"><a
-						class="dropdown-toggle" data-toggle="dropdown" href="#"> <span>北京</span>
-							<span class="caret"></span>
+						class="dropdown-toggle" data-toggle="dropdown"
+						href="/KitchenSurfing/shanghai"> <span>上海</span> <span
+							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="berlin">上海</a></li>
-							<li><a href="boston">深圳</a></li>
-							<li><a href="chicago">广州</a></li>
-							<li><a href="hamptons">浙江</a></li>
-							<li><a href="los-angeles">江西</a></li>
-							<li><a href="new-york">南昌</a></li>
+							<li><a href="/KitchenSurfing/beijing">北京</a></li>
+							<li><a href="/KitchenSurfing/shenzhen">深圳</a></li>
+							<li><a href="/KitchenSurfing/promo/kitchensurfing-is-coming">Other</a></li>
 						</ul></li>
-					<li class="active"><a href="#">找厨师</a></li>
-					<li><a href="#about">博客</a></li>
+					<li class="active"><a
+						href="/KitchenSurfing/menus?source=header">找厨师</a></li>
+					<li><a href="/KitchenSurfing/blog?follow=on">博客</a></li>
 				</ul>
 
-				<form class="navbar-form navbar-right" role="form" action="/KitchenSurfing/usercontrol/login"
-					method="post">
+				<form class="navbar-form navbar-right" role="form"
+					action="/KitchenSurfing/usercontrol/login" method="post">
 					<div class="form-group">
 						<input type="text" name="account" placeholder="用户名"
 							class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="text" name="password" placeholder="密码"
+						<input type="text" name="userPassword" placeholder="密码"
 							class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">登陆</button>
@@ -302,7 +405,8 @@ background:grey;
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class=""></li>
 			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="3" class="active"></li>
 		</ol>
 
 		<div class="carousel-inner">
@@ -330,9 +434,6 @@ background:grey;
 						</div>
 					</div>
 				</div>
-
-
-
 
 			</div>
 
@@ -377,7 +478,37 @@ background:grey;
 									<div class="promotion-description">你下个大餐从这里开始.
 										通过KitchenSurfing找到当地厨师在你家为你烹饪大餐.</div>
 									<div class="promotion-button">
-										<button type="button" class="btn btn-info">查看菜单</button>
+										
+										<a href="/KitchenSurfing/map/graduation-party-shanghai" class="btn btn-info call-to-action">寻找菜谱</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="item">
+				<div class="container hidden-sm hidden-xs">
+					<div class="content row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="row">
+								<div
+									class="col-lg-6 col-md-6 col-sm-6 col-xs-12 promotion-image">
+									<img alt="Lliepikstzewalxj7jct"
+										class="img-responsive stage-promo-image"
+										src="baseimages/uJiIdiHuSVSqUHNxwrv7.png">
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 promotion-text">
+									<div class="promotion-title">现代摩洛哥</div>
+									<div class="promotion-description">
+通过一些香料填充的旅程打开眼界烹饪
+
+摩洛哥的最美味的菜，像美味炖的和
+
+正宗手工古斯古斯 在这里等着你。</div>
+									<div class="promotion-button">
+										<a href="/KitchenSurfing/menus/menu-529d5a826325f3a8b7000035" class="btn btn-red call-to-action">寻找菜谱</a>
 									</div>
 								</div>
 							</div>
@@ -558,14 +689,12 @@ background:grey;
 				<h3>Kitchensurfing博客分享</h3>
 				<div class="row blog-entries">
 					<div class="col-sm-3  clearfix row">
-						<div
-							class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
+						<div class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
 							<a href="#" target="_blank"> <img alt="Jzjrdtcisqqz7s3uibpg"
 								class="img-responsive" src="baseimages/KSgrams-blog.png">
 							</a>
 						</div>
-						<div
-							class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
+						<div class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
 							<p class="hidden-xs">March 20, 2014</p>
 							<h4>
 								<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>
@@ -573,44 +702,38 @@ background:grey;
 						</div>
 					</div>
 					<div class="col-sm-3  clearfix row">
-						<div
-							class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
+						<div class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
 							<a href="#" target="_blank"> <img alt="Fvuxx4ttryrj9nfnh54y"
 								class="img-responsive" src="baseimages/KS_Austin.jpg">
 							</a>
 						</div>
-						<div
-							class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
+						<div class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
 							<p class="hidden-xs">March 20, 2014</p>
 							<h4>
-							<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>
+								<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>
 							</h4>
 						</div>
 					</div>
 					<div class="col-sm-3  clearfix row">
-						<div
-							class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
+						<div class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
 							<a href="#" target="_blank"> <img alt="Noi0ol6ustmk7ys6prib"
 								class="img-responsive" src="baseimages/Ramen-Blog.jpg">
 							</a>
 						</div>
-						<div
-							class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
+						<div class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
 							<p class="hidden-xs">February 27, 2014</p>
 							<h4>
-							<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>
+								<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>
 							</h4>
 						</div>
 					</div>
 					<div class="col-sm-3  clearfix row">
-						<div
-							class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
+						<div class=" col-sm-12 col-sm-push-0 col-xs-5 col-xs-push-7">
 							<a href="#" target="_blank"> <img alt="X637bt73st9afeshcpsy"
 								class="img-responsive" src="baseimages/bubbly.jpg">
 							</a>
 						</div>
-						<div
-							class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
+						<div class=" col-sm-12 col-sm-pull-0 col-xs-7 col-xs-pull-5">
 							<p class="hidden-xs">December 12, 2013</p>
 							<h4>
 								<a href="#" target="_blank"> 这个是钟新的理念,很棒 </a>

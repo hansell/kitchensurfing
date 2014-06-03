@@ -3,8 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Kitchensurfing: Find a Chef</title>
+<title>KitchenSurfing: Find a Chef</title>
 <link rel="stylesheet" href="plugin/bootstap/css/bootstrap.css">
 
 <link href="/KitchenSurfing/project/css/new_application-68f5548c6dd1809e29217ea8ea574930.css"
@@ -234,31 +240,27 @@ background:grey;
 						<div class="icon-bar"></div>
 						<div class="icon-bar"></div>
 					</button>
-					<a class="navbar-brand" href="https://www.kitchensurfing.com/"><img
+					<a class="navbar-brand" href="<%=request.getContextPath()%>/shanghai"><img
 						alt="Kitchensurfing-logo-cropped@2x" class="img-responsive"
 						height="19"
-						src="/KitchenSurfing/project/images/kitchensurfing-logo-cropped@2x-0d9f82384215fb931c20e51a4ed8b3b8.png"
+						src="<%=request.getContextPath()%>/project/images/kitchensurfing-logo-cropped@2x-0d9f82384215fb931c20e51a4ed8b3b8.png"
 						width="161"></a>
 					<ul
 						class="nav navbar-nav header-nav city-nav visible-xs visible-sm"
 						id="city-dropdown">
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown"
-							href="https://www.kitchensurfing.com/login#"> <span
+							href="<%=request.getContextPath()%>/login#"> <span
 								data-current-city="la" id="current-city">Los Angeles</span> <span
 								class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="https://www.kitchensurfing.com/new-york">New
-										York</a></li>
-								<li><a href="https://www.kitchensurfing.com/boston">Boston</a></li>
+								<li><a href="<%=request.getContextPath()%>/shanghai">shanghai</a></li>
+								<li><a href="<%=request.getContextPath()%>/beijing">beijing</a></li>
 								<li><a href="https://www.kitchensurfing.com/los-angeles">Los
 										Angeles</a></li>
-								<li><a href="https://www.kitchensurfing.com/berlin">Berlin</a></li>
-								<li><a href="https://www.kitchensurfing.com/hamptons">Hamptons</a></li>
-								<li><a href="https://www.kitchensurfing.com/chicago">Chicago</a></li>
 								<li><a
-									href="https://www.kitchensurfing.com/promo/kitchensurfing-is-coming">Other</a></li>
+									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming">Other</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -266,35 +268,30 @@ background:grey;
 					id="hamburger-menu">
 					<ul class="nav navbar-nav header-nav">
 						<li class="visible-xs visible-sm"><a
-							href="/KitchenSurfing/">Home</a></li>
+							href="<%=request.getContextPath()%>/shanghai">Home</a></li>
 						<li class="dropdown hidden-xs hidden-sm" id="city-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"
-							href="https://www.kitchensurfing.com/login#"> <span>上海</span> <span class="caret"></span>
+							href="<%=request.getContextPath()%>/shanghai"> <span>上海</span> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/KitchenSurfing/shanghai">上海</a></li>
-								<li><a href="/KitchenSurfing/beijing">北京</a></li>
-								<li><a href="/KitchenSurfing/shenzhen">深圳</a></li>
-								<li><a href="/KitchenSurfing/guangzhou">广州</a></li>
-								<li><a href="/KitchenSurfing/hamptons">浙江</a></li>
-							    <li><a href="/KitchenSurfing/los-angeles">江西</a></li>
-							     <li><a href="/KitchenSurfing/new-york">南昌</a></li>
+								<li><a href="<%=request.getContextPath()%>/shanghai">上海</a></li>
+								<li><a href="<%=request.getContextPath()%>/beijing">北京</a></li>
 								<li><a
-									href="/KitchenSurfing/promo/kitchensurfing-is-coming">Other</a></li>
+									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming">Other</a></li>
 							</ul>
 						</li>
 						<li><a
-							href="https://www.kitchensurfing/menus?source=header">Find
+							href="<%=request.getContextPath()%>/menus?source=header">Find
 								a Chef</a></li>
-						<li><a href="/kitchensurfing/help=center"
+						<li><a href="<%=request.getContextPath()%>/help=center"
 							class="help-center-link">Help</a></li>
 						<li class="referral"><a
-							href="/kitchensurfing/referrals?source=header"
+							href="<%=request.getContextPath()%>/referrals?source=header"
 							id="referral-link">Get $50</a></li>
 					</ul>
 					 <ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
 						<li><a
-							href="https://www.kitchensurfing.com/account/sign-up?source=header"
+							href="<%=request.getContextPath()%>/account/sign-up?source=header"
 							class="sign-up-or-log-in">Inbox</a></li>
 						<li><a href="/KitchenSurfing/login"
 							class="sign-up-or-log-in">Account</a></li>
@@ -383,7 +380,7 @@ background:grey;
 									<div class="promotion-description">你下个大餐从这里开始.
 										通过KitchenSurfing找到当地厨师在你家为你烹饪大餐</div>
 									<div class="promotion-button">
-										<button type="button" class="btn btn-info">查看菜单</button>
+										<a href="<%=request.getContextPath()%>/map/graduation-party-${lp}" class="btn btn-info call-to-action">寻找菜谱</a>
 									</div>
 								</div>
 							</div>
@@ -401,14 +398,17 @@ background:grey;
 									class="col-lg-6 col-md-6 col-sm-6 col-xs-12 promotion-image">
 									<img alt="Lliepikstzewalxj7jct"
 										class="img-responsive stage-promo-image"
-										src="baseimages/farm_to_table_1110x600.png">
+										src="baseimages/uJiIdiHuSVSqUHNxwrv7.png">
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-6 promotion-text">
-									<div class="promotion-title">大盘鸡</div>
-									<div class="promotion-description">你下个大餐从这里开始.
-										通过KitchenSurfing找到当地厨师在你家为你烹饪大餐.</div>
+									<div class="promotion-title">现代摩洛哥</div>
+									<div class="promotion-description">通过一些香料填充的旅程打开眼界烹饪
+
+摩洛哥的最美味的菜，像美味炖的和
+
+正宗手工古斯古斯 在这里等着你。</div>
 									<div class="promotion-button">
-										<button type="button" class="btn btn-info">查看菜单</button>
+											<a href="<%=request.getContextPath()%>/menus/menu-529d5a826325f3a8b7000035" class="btn btn-red call-to-action">寻找菜谱</a>
 									</div>
 								</div>
 							</div>
