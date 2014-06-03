@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.common.MD5MessageDigest;
 import com.kitchensurfing.config.util.SendMailUtil;
 import com.kitchensurfing.iservice.IUserService;
@@ -29,29 +30,24 @@ public class UserControl implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	IUserService userService;
+	private IUserService userService;
 	private UserControl(){
 
-	}
-	@RequestMapping(value="/login" ,method = RequestMethod.GET)
-	public String login(){
-		System.out.println("here");
-		return "login";
 	}
 	@RequestMapping(value="/logout" ,method = RequestMethod.GET)
 	public String logOut(){
 		return "logout";
 	}
 	@RequestMapping(value="/login" ,method = RequestMethod.POST)
-	//@ResponseBody
 	public String logined(HttpServletRequest request,
 			@RequestParam(value="account" ,required=true) String account,
-			@RequestParam(value="password",required=true) String userPassword){
-		String isValidUserS="redirect:/index.html";
+			@RequestParam(value="userPassword",required=true) String userPassword){
+		String isValidUserS="redirect:/pages/index.html";
 		try {
 			boolean isValidUser=userService.logIn(account, MD5MessageDigest.Md5Encode(userPassword));
 			if(isValidUser){
-				
+				User user=userService.getUser(account);
+				request.getSession().setAttribute(AppConstants.SESSION_USER_STRING, user);
 				isValidUserS="homepage";
 			}
 			else{

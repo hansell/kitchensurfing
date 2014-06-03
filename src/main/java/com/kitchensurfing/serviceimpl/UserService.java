@@ -67,4 +67,9 @@ public class UserService implements Serializable, IUserService {
 		return user;
 	}
 
+	public User getUser(final String account) {
+		// TODO Auto-generated method stub
+		return userDao.getUser(account);
+	}
+
 }

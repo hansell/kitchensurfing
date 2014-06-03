@@ -52,5 +52,10 @@ public class CuisineDaoImpl implements Serializable, ICuisineDao {
 		String sql="SELECT * FROM KS_CUISINE";
 		return this.jdbcTemplate.query(sql, new CuisineRowMapper());
 	}
+	public List<Cuisine> getCuisineByChefId(int chefId) {
+		// TODO Auto-generated method stub
+		return  this.jdbcTemplate.query("select * from ks_cuisine c where c.menu_id=?"
+			,new Object[]{chefId}	, new CuisineRowMapper());
+	}
 
 }

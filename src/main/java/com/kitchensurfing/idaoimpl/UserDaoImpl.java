@@ -152,8 +152,8 @@ public class UserDaoImpl implements IUserDao {
 	/**
 	 * @return
 	 * @param
-	 * @description:* new PersonRowMapper()ÊÇÒ»¸öÊµÏÖRowMapper½Ó¿ÚµÄÀà, 
-	 * Ö´ĞĞ»Øµ÷,ÊµÏÖmapRow()·½·¨½«rs¶ÔÏó×ª»»³ÉPersonBean¶ÔÏó·µ»Ø 
+	 * @description:* new PersonRowMapper()ï¿½ï¿½Ò»ï¿½ï¿½Êµï¿½ï¿½RowMapperï¿½Ó¿Úµï¿½ï¿½ï¿½, 
+	 * Ö´ï¿½Ğ»Øµï¿½,Êµï¿½ï¿½mapRow()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rsï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½PersonBeanï¿½ï¿½ï¿½ó·µ»ï¿½ 
 	 */
 	public boolean isUserExists(final User user) {
 		// TODO Auto-generated method stub
@@ -254,8 +254,8 @@ public class UserDaoImpl implements IUserDao {
 	/**
 	 * this is the second ways to complete
 	 * get all users via RowMapper
-	 * Í¨¹ıRowMapper½«Ã¿ĞĞÓ³Éä³ÉÎªÒ»¸öjava¶ÔÏó¡£ Ê¹ÓÃÒ»¸öJDBC
-Statement£¬¶ø²»ÊÇÊ¹ÓÃÔ¤±àÒëµÄµÄPrepareStatement¡£Èç¹ûÏëÓÃPrepareStatementÖ´ĞĞ Ò»¸ö²éÑ¯£¬Ê¹ÓÃÖØÔØµÄ·½·¨¡£
+	 * Í¨ï¿½ï¿½RowMapperï¿½ï¿½Ã¿ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ÎªÒ»ï¿½ï¿½javaï¿½ï¿½ï¿½ï¿½ Ê¹ï¿½ï¿½Ò»ï¿½ï¿½JDBC
+Statementï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½Äµï¿½PrepareStatementï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PrepareStatementÖ´ï¿½ï¿½ Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return list
 	 * <T> List<T> query(String sql, RowMapper<T> rowMapper)
 	 */
@@ -266,7 +266,7 @@ Statement£¬¶ø²»ÊÇÊ¹ÓÃÔ¤±àÒëµÄµÄPrepareStatement¡£Èç¹ûÏëÓÃPrepareStatementÖ´ĞĞ Ò»
 	/**
 	 * this is the second ways to complete
 	 * get all users via RowMapper
-	 * PrepareStatementÖ´ĞĞ Ò»¸ö²éÑ¯£¬¡£
+	 * PrepareStatementÖ´ï¿½ï¿½ Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @return list
 	 * <T> List<T> query(String sql, Object[] args, RowMapper<T> rowMapper)
 	 */
@@ -277,7 +277,7 @@ Statement£¬¶ø²»ÊÇÊ¹ÓÃÔ¤±àÒëµÄµÄPrepareStatement¡£Èç¹ûÏëÓÃPrepareStatementÖ´ĞĞ Ò»
 	/**
 	 * this is the second ways to complete
 	 * get all users via RowMapper
-	 * PrepareStatementÖ´ĞĞ Ò»¸ö²éÑ¯£¬¡£
+	 * PrepareStatementÖ´ï¿½ï¿½ Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @return list
 	 * <T> List<T> query(String sql, Object[] args, int[] argTypes, RowMapper<T> rowMapper)
 	 */
@@ -341,9 +341,9 @@ Statement£¬¶ø²»ÊÇÊ¹ÓÃÔ¤±àÒëµÄµÄPrepareStatement¡£Èç¹ûÏëÓÃPrepareStatementÖ´ĞĞ Ò»
 	}
 	/**
 	 *  
-	 * µÚÒ»¸ö²ÎÊıÎªÖ´ĞĞsql 
-	 * µÚ¶ş¸ö²ÎÊıÎª²ÎÊıÊı¾İ 
-	 * µÚÈı¸ö²ÎÊıÎª²ÎÊıÀàĞÍ 
+	 * ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÖ´ï¿½ï¿½sql 
+	 * ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
         @return int
         @param final user
 	 */
@@ -352,5 +352,13 @@ Statement£¬¶ø²»ÊÇÊ¹ÓÃÔ¤±àÒëµÄµÄPrepareStatement¡£Èç¹ûÏëÓÃPrepareStatementÖ´ĞĞ Ò»
 		Object[] params=new Object[]{user.getUsername(),user.getUserId()};
 		int [] types=new int[]{Types.VARCHAR,Types.INTEGER};
 		return this.jdbcTemplate.update(sql, params, types);
+	}
+
+	public User getUser(final String account) {
+		// TODO Auto-generated method stub
+		String sql="select * from ks_user u where u.account=?";
+		Object[] params=new Object[]{account};
+	    User user=this.jdbcTemplate.queryForObject(sql, params, new UserRowMapper());
+	    return user;
 	}
 }

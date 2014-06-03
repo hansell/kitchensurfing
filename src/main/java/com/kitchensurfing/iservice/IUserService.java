@@ -15,5 +15,6 @@ import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingExcepti
 public interface IUserService {
     public boolean logIn(String account,String userPassword);
     public void logOut();
+    public User getUser(String username);
     public User addUser(HttpServletRequest req) throws Base64DecodingException ,NoSuchAlgorithmException;
 }
