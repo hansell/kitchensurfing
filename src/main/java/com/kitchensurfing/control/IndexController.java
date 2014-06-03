@@ -18,68 +18,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.serviceimpl.UserService;
 
-//@Controller
+@Controller
 public class IndexController {
-	public static final String PAGE_INDEX = "index";
-    public static final String PAGE_SHOW = "show";
-    private static final Logger LOG=Logger.getLogger(IndexController.class);
-    @Autowired
-    UserService userService;
-    
-	 /** 
-     *  http://localhost:8080/KitchenSurfing/login 模拟 
-     *  
-     * @return 
-     * @throws IOException 
-     */  
-    @RequestMapping(value = "/login", method = RequestMethod.GET)  
-    public String initLogin(HttpServletResponse response) throws IOException {  
-       LOG.info("login");
-        response.setContentType("text/html;charset=utf-8");  
-        response.getWriter().println("进入登陆页面");  
-        response.flushBuffer();  
-        return null;  
-  
-    }  
-    @RequestMapping("/{id}")  
-    public ModelAndView view(@PathVariable("id") int id, HttpServletRequest req) {  
-        User user = new User();  
-        user.setUserId(id);  
-        user.setUsername("zhang");  
-  
-        ModelAndView mv = new ModelAndView();  
-        mv.addObject("user", user);  
-        mv.setViewName("user/view");  
-        return mv;  
-    }  
- 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView index() {
-        return new ModelAndView(PAGE_INDEX, "signupForm", new User());
-    }
- 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(Model model, @Validated User signupForm, BindingResult result) {
- 
-        String returnPage = PAGE_INDEX;
- 
-        if (!result.hasErrors()) {
-            try {
-               // model.addAttribute("signupForm", sampleService.toString());
-                returnPage = PAGE_SHOW;
-            } catch (InvalidMediaTypeException e) {
-                model.addAttribute("page_error", e.getMessage());
-            }
-        }
-        return returnPage;
-    }
- 
-    @RequestMapping(value = "/security-error", method = RequestMethod.GET)
-    public String securityError(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
-        return "redirect:/";
-    }
+	public static final String PAGE_INDEX = "index.html";
+	public static final String PAGE_SHOW = "show";
+	private static final Logger LOG=Logger.getLogger(IndexController.class);
+	/** 
+	 *  http://localhost:8080/KitchenSurfing/shanghai 
+	 *  
+	 * @return 
+	 * @throws IOException 
+	 */  
+	@RequestMapping(value = "/shanghai", method = RequestMethod.GET)  
+	public String getShanghai(HttpServletRequest request) throws IOException {  
+		User user=(User) request.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+		if(user==null)
+			return "redirect:/pages/"+PAGE_INDEX;
+		else
+			return "homepage";
+	}  
+	@RequestMapping("/{id}")  
+	public ModelAndView view(@PathVariable("id") int id, HttpServletRequest req) {  
+		User user = new User();  
+		user.setUserId(id);  
+		user.setUsername("zhang");  
+
+		ModelAndView mv = new ModelAndView();  
+		mv.addObject("user", user);  
+		mv.setViewName("user/view");  
+		return mv;  
+	}  
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView index() {
+		return new ModelAndView(PAGE_INDEX, "signupForm", new User());
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(Model model, @Validated User signupForm, BindingResult result) {
+
+		String returnPage = PAGE_INDEX;
+
+		if (!result.hasErrors()) {
+			try {
+				// model.addAttribute("signupForm", sampleService.toString());
+				returnPage = PAGE_SHOW;
+			} catch (InvalidMediaTypeException e) {
+				model.addAttribute("page_error", e.getMessage());
+			}
+		}
+		return returnPage;
+	}
+
+	@RequestMapping(value = "/security-error", method = RequestMethod.GET)
+	public String securityError(RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
+		return "redirect:/";
+	}
 }

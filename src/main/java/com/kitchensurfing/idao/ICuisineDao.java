@@ -14,4 +14,5 @@ public interface ICuisineDao {
   Cuisine fetchCuisine(String name);
   int getRowCount();
   List<Cuisine> queryAllCuisine();
+  List<Cuisine> getCuisineByChefId(final int chefId);
 }

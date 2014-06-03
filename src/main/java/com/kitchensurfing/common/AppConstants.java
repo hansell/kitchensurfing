@@ -1,6 +1,11 @@
 package com.kitchensurfing.common;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 
 /**
  * The constants of kitchensurfing
@@ -17,17 +22,19 @@ public class AppConstants implements Serializable{
 	public final static int SALT_LENGTH = 2; 
 	
 	/**
-	 * Õ¾µãÅäÖÃ
+	 * cities list
 	 */
+	public static List<String> cities=new ArrayList<String>(
+			Arrays.asList("shanghai","beijing","shen-zhen"));
 	public final static String SITE_CONFIG = "siteConfig";
 	
 	/**
-	 * ÏµÍ³ÅäÖÃ
+	 * ÏµÍ³ï¿½ï¿½ï¿½ï¿½
 	 */
 	public final static String SYSTEM_CONFIG = "systemConfig";
 	
 	/**
-	 * µÇÂ¼ÓÃ»§
+	 * ï¿½ï¿½Â¼ï¿½Ã»ï¿½
 	 */
 	public final static String LOGIN_USER = "user";
     
@@ -38,7 +45,7 @@ public class AppConstants implements Serializable{
     
     public static final String COOKIE_REMEMBERME_USER_PASSWORD = "lovej.cookie.rememberme";
     
-    //7Ìì
+    //7ï¿½ï¿½
     public static final int COOKIE_REMEMBERME_TIME = 60 * 60 * 24 * 7;
     /**
      * operation
@@ -48,4 +55,10 @@ public class AppConstants implements Serializable{
     public static final String OPERATION_SUCCESS = "success";
     
     public static final String OPERATION_FAILURE = "failure";
+    /**
+     * token constants
+     */
+    public static  String DEFAULT_TOKEN_MSG_JSP="";
+    public static String TOKEN_VALUE;
+    public static  String DEFAULT_TOKEN_NAME="springmvc.token";
 }

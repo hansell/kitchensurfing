@@ -2,6 +2,8 @@ package com.kitchensurfing.idaoimpl;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -36,5 +38,11 @@ public class CuisineDaoImplTest {
    {
 	   for(Cuisine sine:ds.queryAllCuisine())
 		   System.out.println(sine.getCuisineName());
+   }
+   @Test
+   public void testgetCusineByChefId(){
+	   List<Cuisine> list=ds.getCuisineByChefId(2);
+	   for(Cuisine c:list)
+		   System.out.println(c.getCuisineName());
    }
 }
