@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingExcepti
 @RequestMapping("/usercontrol")
 public class UserControl implements Serializable{
 
-	private static final Logger LOG=Logger.getLogger(UserControl.class);
+	private static final Logger logger=Logger.getLogger(UserControl.class);
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
@@ -34,49 +35,69 @@ public class UserControl implements Serializable{
 	private UserControl(){
 
 	}
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String logIn(){
+		return "login";
+	}
 	@RequestMapping(value="/logout" ,method = RequestMethod.GET)
-	public String logOut(){
-		return "logout";
+	public String logOut(HttpServletRequest req,HttpServletResponse res){
+		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+		logger.info(user.getAccount()+"hava log out of our kitchensurfing. ");
+		req.getSession().removeAttribute(AppConstants.SESSION_USER_STRING);
+		return "redirect:/shanghai";
 	}
 	@RequestMapping(value="/login" ,method = RequestMethod.POST)
 	public String logined(HttpServletRequest request,
 			@RequestParam(value="account" ,required=true) String account,
-			@RequestParam(value="password",required=true) String userPassword){
-		String isValidUserS="redirect:/index.html";
+			@RequestParam(value="password",required=true) String password){
+		String path="";
 		try {
-			boolean isValidUser=userService.logIn(account, MD5MessageDigest.Md5Encode(userPassword));
+			boolean isValidUser=userService.logIn(account, MD5MessageDigest.Md5Encode(password));
 			if(isValidUser){
 				User user=userService.getUser(account);
 				request.getSession().setAttribute(AppConstants.SESSION_USER_STRING, user);
-				isValidUserS="homepage";
+				logger.info(user.getAccount()+"hava signed in successfully,Congraturations! we are you best kitchen helper ");
+				request.getSession().setAttribute("flag", "K+zCqTwUgEv0PZIDLJHrhstaCW/RIDyy2h2co6maUSY=");
+				path="redirect:/shanghai";
 			}
 			else{
+				path="login";
 				request.setAttribute("msg", "none");
 			}
 		}catch(NullPointerException e1){
 			e1.printStackTrace();
-			LOG.info(e1.getMessage());
+			logger.error(e1.getMessage());
 		}
 		catch (NoSuchAlgorithmException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
-			LOG.info(e2.getMessage());
+			logger.error(e2.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
-			LOG.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
-		return isValidUserS;
+		return path;
 	}
-	//@ResponseBody
-	@RequestMapping("/tests.do")
-	@ResponseBody
-	public String printUser()
-	{
-		return "hello world";	
+	
+	@RequestMapping(value="/account",method=RequestMethod.GET)  
+	public String Setting(HttpServletRequest req,HttpServletResponse res) {
+		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+		if(user==null){
+			logger.warn("Sorry,you operation has encountered a big problem");
+			return "redirect:/shanghai";
+		}
+		else
+			return "settings";
 	}
-	@RequestMapping(value="/loginsss",method=RequestMethod.POST)  
-	public void loginPost() {
-
+	@RequestMapping(value="/settings",method=RequestMethod.GET)  
+	public String Account(HttpServletRequest req,HttpServletResponse res) {
+		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+		if(user==null){
+			logger.warn("Sorry,you operation has encountered a big problem");
+			return "redirect:/shanghai";
+		}
+		else
+			return "account";
 	}
 	@RequestMapping("/zh")
 	public String zh(){
@@ -105,9 +126,9 @@ public class UserControl implements Serializable{
 	@RequestMapping("/registeruser.do")
 	public ModelAndView registerUser(HttpServletRequest req) {
 
-		LOG.debug("用户名===>" + req.getParameter("username"));
-		LOG.debug("密码===>" + req.getParameter("password"));
-		LOG.debug("邮箱===>" + req.getParameter("email"));
+		logger.debug("用户名===>" + req.getParameter("username"));
+		logger.debug("密码===>" + req.getParameter("password"));
+		logger.debug("邮箱===>" + req.getParameter("email"));
 		// 获取激活的url
 		String link = SendMailUtil.sendRegisterToUser(req);
 		ModelAndView model = new ModelAndView("tobeactive");

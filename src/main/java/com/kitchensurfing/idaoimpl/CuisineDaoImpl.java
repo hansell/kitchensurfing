@@ -13,21 +13,12 @@ import com.kitchensurfing.exception.SQLErrorCodesTranslator;
 import com.kitchensurfing.idao.ICuisineDao;
 import com.kitchensurfing.po.Cuisine;
 @Repository
-public class CuisineDaoImpl implements Serializable, ICuisineDao {
+public class CuisineDaoImpl  extends BaseDaoImpl implements Serializable, ICuisineDao {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		 // create a custom translator and set the DataSource for the default translation lookup
-		SQLErrorCodesTranslator tr = new SQLErrorCodesTranslator();
-		    tr.setDataSource(dataSource);
-		    this.jdbcTemplate.setExceptionTranslator(tr);
-	}
 	public Cuisine getCuisine(final int id) {
 		// TODO Auto-generated method stub
 		String sql="select * from ks_cuisine c where c.cuisine_id=?";

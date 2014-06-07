@@ -16,25 +16,15 @@ import com.kitchensurfing.exception.SQLErrorCodesTranslator;
 import com.kitchensurfing.idao.IChefDao;
 import com.kitchensurfing.po.Chef;
 @Repository
-public class ChefDaoImpl implements Serializable, IChefDao {
+public class ChefDaoImpl extends BaseDaoImpl implements Serializable, IChefDao 
+{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7538675731733454778L;
-	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		 // create a custom translator and set the DataSource for the default translation lookup
-		SQLErrorCodesTranslator tr = new SQLErrorCodesTranslator();
-		    tr.setDataSource(dataSource);
-		    this.jdbcTemplate.setExceptionTranslator(tr);
-	}
+	
 	public Chef getChef(final int chefId) {
 		// TODO Auto-generated method stub
 		String sql="select * from ks_chef c where c.chef_id=?";
-		return  this.jdbcTemplate.queryForObject(sql, new Object[]{chefId},new ChefRowMapper());
+		return  jdbcTemplate.queryForObject(sql, new Object[]{chefId},new ChefRowMapper());
 	}
 	public Chef getChef(String email, String name) {
 		// TODO Auto-generated method stub

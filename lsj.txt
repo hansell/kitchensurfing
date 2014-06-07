@@ -1,1 +1,10 @@
-sdfsdf
+原理：在session里保存一份 token，每次提交刷新下session里的token.
+
+例如，每次请求A.JSP ，动态生成个session值，然后按submit时，
+
+1，检查session里的 token（如果session已经相等，说明是重复提交，不做任何处理）
+
+2，如果session不存在 token或者 token不相等，那么判断为非重复提交
+
+
+当然此种方法还可以和JS同时使用，加强用户体验，比如每次提交，提交按钮变成灰色
