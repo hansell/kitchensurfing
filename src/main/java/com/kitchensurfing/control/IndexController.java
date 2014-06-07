@@ -13,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,25 +27,45 @@ import com.kitchensurfing.serviceimpl.UserService;
 
 @Controller
 public class IndexController {
-	public static final String PAGE_INDEX = "index.html";
+	public static final String PAGE_INDEX = "homepage";
 	public static final String PAGE_SHOW = "show";
 	private static final Logger LOG=Logger.getLogger(IndexController.class);
 	/** 
 	 *  http://localhost:8080/KitchenSurfing/shanghai 
-	 *  
+	 *  It's the default location
 	 * @return 
 	 * @throws IOException 
 	 */  
 	@RequestMapping(value = "/shanghai", method = RequestMethod.GET)  
-	public String getShanghai(HttpServletRequest request) throws IOException {  
-		User user=(User) request.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+	public String getShanghai(HttpServletRequest req,HttpServletResponse res,
+			@RequestHeader ("host") String hostName,
+			@RequestHeader ("Accept") String acceptType, 
+			@RequestHeader ("Accept-Language") String acceptLang,
+			@RequestHeader ("Accept-Encoding") String acceptEnc, 
+			//@RequestHeader ("Cache-Control") String cacheCon, 
+			//@RequestHeader ("Cookie") String cookie, 
+			@RequestHeader ("User-Agent") String userAgent
+			) throws IOException {  
+
+		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+		System.out.println("Host : " + hostName);
+		System.out.println("Accept : " + acceptType);
+		System.out.println("Accept Language : " + acceptLang);
+		System.out.println("Accept Encoding : " + acceptEnc);
+		//System.out.println("Cache-Control : " + cacheCon);
+		//System.out.println("Cookie : " + cookie);
+		System.out.println("User-Agent : " + userAgent);
 		String view="homepage";
+		LOG.info("The client browser language is"+acceptLang);
 		if(user==null){
-			request.setAttribute("lp", "shanghai");
+			RequestContextHolder.getRequestAttributes().setAttribute("KEY_VALUE", "TEST_VALUE", 
+					RequestAttributes.SCOPE_SESSION);
+			req.setAttribute("lp", "shanghai");
 			return view;
 		}
 		else{
-			request.setAttribute("lp", "shanghai");
+
+			req.setAttribute("lp", "shanghai");
 			return view;
 		}
 	}  
