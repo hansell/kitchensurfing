@@ -22,7 +22,7 @@ import com.kitchensurfing.iservice.ILocationService;
 import com.kitchensurfing.po.Chef;
 import com.kitchensurfing.po.Location;
 
-@Controller
+
 /**
  * @time June 2014
  * @author Hansel

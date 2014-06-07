@@ -16,7 +16,7 @@ import com.kitchensurfing.iservice.IChefService;
 import com.kitchensurfing.po.Chef;
 
 @Controller
-
+@RequestMapping("/chef")
 public class ChefController implements Serializable {
     
 	private static final Logger log=Logger.getLogger(UserControl.class);
@@ -42,4 +42,46 @@ public class ChefController implements Serializable {
 		}
 		return ""+email+name;
 	}
+	
+	//返回厨师的基础页面
+	@RequestMapping("/chefBase.view")
+	public String chefBase()
+	{
+		
+	   return "chefbase";
+		
+	}
+	//返回厨师的基础页面
+	@RequestMapping("/chefExprerience.view")
+	public String chefExprerience()
+	{
+		
+		return "chefexprerience";
+		
+	}
+	//作息页面设置
+	@RequestMapping("/chefLogistics.view")
+	public String chefLogistics()
+	{
+		
+		return "cheflogistics";
+		
+	}
+	//图片上传页面设置
+	@RequestMapping("/chefImage.view")
+	public String chefImage()
+	{
+		
+		return "chefimage";
+		
+	}
+	//添加菜单
+	@RequestMapping("/chefMenus.view")
+	public String chefMenus()
+	{
+		
+		return "chefmenus";
+		
+	}
+	
 }

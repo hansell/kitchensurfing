@@ -22,7 +22,7 @@ import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.serviceimpl.UserService;
 
-@Controller
+
 public class IndexController {
 	public static final String PAGE_INDEX = "index.html";
 	public static final String PAGE_SHOW = "show";
@@ -30,7 +30,7 @@ public class IndexController {
 	/** 
 	 *  http://localhost:8080/KitchenSurfing/shanghai 
 	 *  
-	 * @return 
+	 * @return s
 	 * @throws IOException 
 	 */  
 	@RequestMapping(value = "/shanghai", method = RequestMethod.GET)  

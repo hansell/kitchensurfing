@@ -21,8 +21,8 @@ import com.kitchensurfing.iservice.IReviewService;
 import com.kitchensurfing.po.Chef;
 import com.kitchensurfing.po.Course;
 
-@Controller
-@RequestMapping("/menus")
+
+
 public class MenuController implements Serializable {
 
 	private static final long serialVersionUID = 1L;

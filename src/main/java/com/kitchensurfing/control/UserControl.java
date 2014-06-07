@@ -41,8 +41,8 @@ public class UserControl implements Serializable{
 	@RequestMapping(value="/login" ,method = RequestMethod.POST)
 	public String logined(HttpServletRequest request,
 			@RequestParam(value="account" ,required=true) String account,
-			@RequestParam(value="userPassword",required=true) String userPassword){
-		String isValidUserS="redirect:/pages/index.html";
+			@RequestParam(value="password",required=true) String userPassword){
+		String isValidUserS="redirect:/index.html";
 		try {
 			boolean isValidUser=userService.logIn(account, MD5MessageDigest.Md5Encode(userPassword));
 			if(isValidUser){

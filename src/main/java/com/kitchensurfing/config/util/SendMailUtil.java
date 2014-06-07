@@ -17,7 +17,7 @@ public class SendMailUtil {
 		mailInfo.setMailServerHost("smtp.126.com");
 		mailInfo.setValidate(true);
 		mailInfo.setUserName("javapolo@126.com");
-		mailInfo.setPassword("lsj543jjj");
+		mailInfo.setPassword("543jjj");
 		mailInfo.setFromAddress("javapolo@126.com");
 		// mailInfo.setToAddress("919183005@qq.com");
 		mailInfo.setToAddress("376474510@qq.com");
