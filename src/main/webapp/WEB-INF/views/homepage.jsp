@@ -759,7 +759,7 @@ background:grey;
     	 }
      });
     seajs.use(['greet'],function(Greet){
-    	Greet.helloJavaScript();
+    	//Greet.helloJavaScript();
     });
     
     language_complete = navigator.language.split("-");

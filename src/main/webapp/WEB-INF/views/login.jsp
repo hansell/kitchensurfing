@@ -24,7 +24,7 @@
 						<div class="icon-bar"></div>
 						<div class="icon-bar"></div>
 					</button>
-					<a class="navbar-brand" href="/KitchenSurfing/"><img
+					<a class="navbar-brand" href="/KitchenSurfing/shanghai"><img
 						alt="Kitchensurfing-logo-cropped@2x" class="img-responsive"
 						height="19"
 						src="/KitchenSurfing/project/images/kitchensurfing-logo-cropped@2x-0d9f82384215fb931c20e51a4ed8b3b8.png"
@@ -34,7 +34,7 @@
 						id="city-dropdown">
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown"
-							href="/kitchenSurfing/login#"> <span
+							href="/kitchenSurfing/shanghai"> <span
 								data-current-city="la" id="current-city">上海</span> <span
 								class="caret"></span>
 						</a>
@@ -42,11 +42,6 @@
 							
 								<li><a href="/KitchenSurfing/shanghai">上海</a></li>
 								<li><a href="/KitchenSurfing/beijing">北京</a></li>
-								<li><a href="/KitchenSurfing/shenzhen">深圳</a></li>
-								<li><a href="/KitchenSurfing/guangzhou">广州</a></li>
-								<li><a href="/KitchenSurfing/hamptons">浙江</a></li>
-							    <li><a href="/KitchenSurfing/los-angeles">江西</a></li>
-							     <li><a href="/KitchenSurfing/new-york">南昌</a></li>
 								<li><a
 									href="/KitchenSurfing/promo/kitchensurfing-is-coming">Other</a></li>
 							
@@ -57,40 +52,35 @@
 					id="hamburger-menu">
 					<ul class="nav navbar-nav header-nav">
 						<li class="visible-xs visible-sm"><a
-							href="/KitchenSurfing/">Home</a></li>
+							href="/KitchenSurfing/shanghai">Home</a></li>
 						<li class="dropdown hidden-xs hidden-sm" id="city-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"
-							href="/KitchenSurfing/login#"> <span>上海</span> <span class="caret"></span>
+							href="/KitchenSurfing/shanghai"> <span>上海</span> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/KitchenSurfing/shanghai">上海</a></li>
 								<li><a href="/KitchenSurfing/beijing">北京</a></li>
-								<li><a href="/KitchenSurfing/shenzhen">深圳</a></li>
-								<li><a href="/KitchenSurfing/guangzhou">广州</a></li>
-								<li><a href="/KitchenSurfing/hamptons">浙江</a></li>
-							    <li><a href="/KitchenSurfing/los-angeles">江西</a></li>
-							     <li><a href="/KitchenSurfing/new-york">南昌</a></li>
 								<li><a
 									href="/KitchenSurfing/promo/kitchensurfing-is-coming">Other</a></li>
 							</ul>
 						</li>
 						<li><a
-							href="/KitchenSurfing/menus?source=header">Find
+							href="<%=request.getContextPath()%>/menus?source=header">Find
 								a Chef</a></li>
-						<li><a href="/KitchenSurfing/help=center"
+						<li><a href="<%=request.getContextPath()%>/help=center"
 							class="help-center-link">Help</a></li>
 						<li class="referral"><a
-							href="/KitchenSurfing/referrals?source=header"
+							href="<%=request.getContextPath()%>/referrals?source=header"
 							id="referral-link">Get $50</a></li>
 					</ul>
 					<ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
 						<li><a
-							href="/KitchenSurfing/account/sign-up?source=header"
+							href="<%=request.getContextPath()%>/account/sign-up?source=header"
 							class="sign-up-or-log-in">Sign Up</a></li>
-						<li><a href="/KitchenSurfing/login"
+						<li><a href="<%=request.getContextPath()%>/usercontrol/login"
 							class="sign-up-or-log-in">Log in</a></li>
 						<li class="im-a-chef-wrapper"><a class="btn im-a-chef"
-							href="/KitchenSurfing/chefs" role="button">I'm
+							href="<%=request.getContextPath()%>/chefs" role="button">I'm
 								a Chef</a></li>
 					</ul>
 				</div>
@@ -105,11 +95,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						<form accept-charset="UTF-8"
-							action="/KitchenSurfing/login"
+							action="<%=request.getContextPath()%>/usercontrol/login"
 							class="simple_form new_user" id="new_user" method="post"
 							novalidate="novalidate">
 							<div style="margin: 0; padding: 0; display: inline">
-								<input name="utf8" type="hidden" value="${msg }"><input
+								<input name="utf8" type="hidden" value="${msg }" id="KzCqTwUgEv0PZIDL"><input
 									name="authenticity_token" type="hidden"
 									value="K+zCqTwUgEv0PZIDLJHrhstaCW/RIDyy2h2co6maUSY=">
 							</div>
@@ -153,8 +143,48 @@
 			</center>
 		</div>
 	</div>
-	<script src="./plugin/jquery/jquery.js"></script>
-	<script src="./plugin/bootstap/js/bootstrap.js"></script>
+	<script src="<%=request.getContextPath()%>/plugin/jquery/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/plugin/bootstap/js/bootstrap.js"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+	$("#new_user").submit(function(){
+		var isFormValid=true;
+		  $("input[type='text'],select,input[type='password']",this).each(function() {
+		         if($(this).val().trim() == "") {
+		        	 isFormValid = false; 
+		         }
+		     });
+		  if(!isFormValid){
+				$(".notifications" ).html( "<div class='alert alert-error'>"
+						+"<p>You need to sign in or sign up before continuing.</p>"
+						+"</div>");
+			}
+		/* $("#new_user .required input:text").each(function(){
+			alert($(this).val());
+			if($.trim($(this).val()).length==0){
+				alert(77);
+				$(this).parent().addClass("highlight");
+				siFormValid=false;
+			}else{
+				$(this).parent().removeClass("highlight");
+			}
+			if(isFormValid){
+				$(".notifications" ).html( "<div class='alert alert-error'>"
+						+"<p>You need to sign in or sign up before continuing.</p>"
+						+"</div>");
+			}
+		}); */
 
+		return isFormValid;
+	});
+	var msg=$.trim($("#KzCqTwUgEv0PZIDL").val());
+	if(msg=="none"){
+		$(".notifications" ).html( "<div class='alert alert-error'>"
+				+"<p>Invalid email or password.</p>"
+				+"</div>");
+		
+	}
+});
+</script>
 </body>
 </html>
