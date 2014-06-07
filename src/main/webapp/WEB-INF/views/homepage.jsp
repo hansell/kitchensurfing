@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KitchenSurfing: Find a Chef</title>
 <link rel="stylesheet" href="plugin/bootstap/css/bootstrap.css">
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <link href="/KitchenSurfing/project/css/new_application-68f5548c6dd1809e29217ea8ea574930.css"
 	media="screen" rel="stylesheet" type="text/css">
 <style>
@@ -250,15 +250,14 @@ background:grey;
 						id="city-dropdown">
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown"
-							href="<%=request.getContextPath()%>/login#"> <span
-								data-current-city="la" id="current-city">Los Angeles</span> <span
+							href="<%=request.getContextPath()%>/shanghai"> <span
+								data-current-city="la" id="current-city">上海</span> <span
 								class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="<%=request.getContextPath()%>/shanghai">shanghai</a></li>
-								<li><a href="<%=request.getContextPath()%>/beijing">beijing</a></li>
-								<li><a href="https://www.kitchensurfing.com/los-angeles">Los
-										Angeles</a></li>
+								<li><a href="<%=request.getContextPath()%>/shanghai">上海</a></li>
+								<li><a href="<%=request.getContextPath()%>/beijing">北京</a></li>
+								<li><a href="<%=request.getContextPath()%>/shenzhen">深圳</a></li>
 								<li><a
 									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming">Other</a></li>
 							</ul></li>
@@ -271,35 +270,82 @@ background:grey;
 							href="<%=request.getContextPath()%>/shanghai">Home</a></li>
 						<li class="dropdown hidden-xs hidden-sm" id="city-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"
-							href="<%=request.getContextPath()%>/shanghai"> <span>上海</span> <span class="caret"></span>
+							href="<%=request.getContextPath()%>/shanghai"> <span data-i18n="headline.cities.ShangHai" id="current_default"></span> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="<%=request.getContextPath()%>/shanghai">上海</a></li>
-								<li><a href="<%=request.getContextPath()%>/beijing">北京</a></li>
+								<li><a href="<%=request.getContextPath()%>/shanghai" id="current-shanghai" data-i18n="headline.cities.ShangHai"></a></li>
+								<li><a href="<%=request.getContextPath()%>/beijing" id="current-beijing" data-i18n="headline.cities.BeiJing"></a></li>
 								<li><a
-									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming">Other</a></li>
+									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming" data-i18n="headline.cities.Other" id="current-other"></a></li>
 							</ul>
 						</li>
 						<li><a
-							href="<%=request.getContextPath()%>/menus?source=header">Find
-								a Chef</a></li>
+							href="<%=request.getContextPath()%>/menus?source=header" id="find-chef" data-i18n="headline.chef.find_a_chef"></a></li>
 						<li><a href="<%=request.getContextPath()%>/help=center"
-							class="help-center-link">Help</a></li>
-						<li class="referral"><a
-							href="<%=request.getContextPath()%>/referrals?source=header"
-							id="referral-link">Get $50</a></li>
+							class="help-center-link" data-i18n="headline.helper.help"></a></li>
+						<li class="dropdown hidden-xs hidden-sm" id="language-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown"
+							href="<%=request.getContextPath()%>/CN"> <span>Language</span> <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="?setLng=zh-CN" data-i18n="headline.language.Chinese"></a></li>
+								<li><a href="#" data-i18n="headline.language.Chinese_TW"></a></li>
+								<li><a href="?setLng=en-US" data-i18n="headline.language.English"></a></li>
+								<li><a href="#" data-i18n="headline.language.French"></a></li>
+								<li><a href="#" data-i18n="headline.language.Korean"></a></li>
+								<li><a href="#" data-i18n="headline.language.Japanese"></a></li>
+								
+							</ul>
+						</li>
 					</ul>
-					 <ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
+					<%--  <ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
 						<li><a
 							href="<%=request.getContextPath()%>/account/sign-up?source=header"
 							class="sign-up-or-log-in">Inbox</a></li>
 						<li><a href="/KitchenSurfing/login"
 							class="sign-up-or-log-in">Account</a></li>
 						
-					</ul>
+					</ul> --%>
 					
+			<c:choose>
+			   <c:when test="${!empty sessionScope.kitchensurfing_session_user}">
+			     <ul class="nav navbar-nav header-nav user-nav ">
+			         <li class="menu-item hidden-xs hidden-sm"><a href="${pageContext.request.contextPath}/favorites" class="favorites"
+			          data-placement="bottom" rel="tooltip" data-original-title="favorites">
+			         </a></li>
+			         <li class="menu-item inbox hidden-xs hidden-sm"><a href="${pageContext.request.contextPath}/inbox" data-placement="bottom"
+			          rel="tooltip" data-origin-title="Inbox">
+			          <span class="envelope-icon" data-i18n="headline.box.in_box"></span>
+			         </a></li>
+			         <li class="dropdown hidden-xs hidden-sm" id="user-dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+			          href="${pageContext.request.contextPath}/shanghai#"> <img alt="${user.username}" class="user-image" src="${pageContext.request.contextPath}/assets/5365bc78350d479b7400000b-50x50.jpg">
+			         <span class="name">${sessionScope.kitchensurfing_session_user.username }</span><span class="caret"></span>
+			          </a>
+			            <ul class="dropdown-menu" role="menu">
+			            <li><a href="${pageContext.request.contextPath}/chefs/edit?tab=about_me" data-i18n="headline.edit.chef_profile"></a></li>
+			            <li><a href="${pageContext.request.contextPath}/usercontrol/account"> <span class="translation_missing" title="translation missing:en.new_homepage.setting" data-i18n="headline.setting.first"></span>
+			            </a></li>
+			            <li><a href="${pageContext.request.contextPath}/usercontrol/logout"><span class="translation_missing" title="translation missing:en.new_homepage.log_out" data-i18n="headline.logout.out"></span>
+			            </a></li>
+			            </ul>
+			          </li>
+			     </ul>
+			   </c:when>
+			  <c:otherwise>
+			   <ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
+					<li><a href="<%=request.getContextPath()%>/account/sign-up?source=header"
+						class="sign-up-or-log-in" data-i18n="headline.signUper.sign_up"></a></li>
+					<li><a href="<%=request.getContextPath()%>/usercontrol/login" class="sign-up-or-log-in" data-i18n="headline.login_user.login">
+							</a></li>
+					<li class="im-a-chef-wrapper"><a class="btn im-a-chef"
+						href="<%=request.getContextPath()%>/chefs" role="button" data-i18n="headline.Im_chef.cooker"></a></li>
+				</ul>
+			</c:otherwise>		
+			</c:choose>
+			
 				
 			</div>
+			<input type="hidden" name="authenticity_token" id="token" value="${flag}">
 		</div>
 	</nav>
 
@@ -697,7 +743,43 @@ background:grey;
 
 
 	</footer>
-	<script src="plugin/jquery/jquery.js"></script>
-	<script src="plugin/bootstap/js/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath}/plugin/jquery/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/plugin/sea.js"></script>
+	<script src="${pageContext.request.contextPath}/plugin/bootstap/js/bootstrap.js"></script>
+
+<script src="${pageContext.request.contextPath}/plugin/i18next-1.7.3.js"></script>
+	<script type="text/javascript">
+	
+     seajs.config({
+    	 paths:{'base':'module'},
+    	 alias:{
+    		 "jquery" : "base/jquery/jquery.js",
+			 "Backbone" : "base/backbone/Backbone.js",
+			 "greet" : "base/greet.js"
+    	 }
+     });
+    seajs.use(['greet'],function(Greet){
+    	Greet.helloJavaScript();
+    });
+    
+    language_complete = navigator.language.split("-");
+    language = (language_complete[0]);
+    console.log("Sprache (root): %s", language);
+    //i18n callback
+    $.i18n.init({
+        //lng: 'en-US',
+        ns: { namespaces: ['ns.special'], defaultNs: 'ns.special'},
+        useLocalStorage: false,
+        debug: true
+    }, function() {
+      
+        alert($.t('headline.cities.ShangHai'));
+       
+        $('#hamburger-menu').i18n();
+       // $('#extendedAttr').i18n();
+    });
+
+
+	</script>
 </body>
 </html>

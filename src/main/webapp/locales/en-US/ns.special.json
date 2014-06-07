@@ -1,0 +1,48 @@
+{
+    "headline": {
+        "cities":
+        {
+        "current_city":"ShangHai",
+        "ShangHai":"ShangHai",
+        "BeiJing":"BeiJing",
+        "Other":"Other"
+        },
+        "chef":
+        {
+        "find_a_chef":"Find a Chef"
+        },
+        "helper":
+        {
+        "help":"Help"
+        },
+         "language":{
+         "Chinese":"Simplify Chinese",
+         "Chinese_TW":"Traditional Chinese",
+         "English":"English",
+         "French":"French",
+         "Japanese":"Japanese",
+         "Korean":"Korean"
+        },
+        "signUper":{
+         "sign_up":"Sign Up"
+        },
+        "login_user":{
+        "login":"Log In"
+        },
+        "Im_chef":{
+        "cooker":"I'm a Chef"
+        },
+        "box":{
+        "in_box":"Inbox"
+        },
+        "edit":{
+        "chef_profile":"Edit Chef Profile"
+        },
+        "setting":{
+        "first":"Settings"
+        },
+        "logout":{
+        "out":"Log Out"
+        }
+    }
+}

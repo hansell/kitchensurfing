@@ -1,0 +1,52 @@
+
+{
+    "headline": {
+        "cities":
+        {
+          "Current_city":"\u4e0a\u6d77",
+          "ShangHai":"\u4e0a\u6d77",
+          "BeiJing":"\u5317\u4eac",
+          "Other":"\u5176\u4ed6\u57ce\u5e02"
+        },
+        "chef":
+        {
+        "find_a_chef":"\u5bfb\u627e\u53a8\u5e08"
+        },
+        "helper":
+        {
+        "help":"\u5e2e\u52a9"
+        },
+        "language":{
+         "Chinese":"\u7b80\u4f53\u4e2d\u6587",
+         "Chinese_TW":"\u7e41\u4f53\u4e2d\u6587",
+         "English":"\u82f1\u8bed",
+         "French":"\u6cd5\u8bed",
+         "Japanese":"\u65e5\u8bed",
+         "Korean":"\u97e9\u8bed"
+        },
+        "signUper":{
+         "sign_up":"\u6ce8\u518c"
+        },
+        "login_user":{
+        "login":"\u767b\u9646"
+        },
+        "Im_chef":{
+        "cooker":"\u5927\u53a8\u5728\u6b64"
+        },
+        "box":{
+        "in_box":"\u90ae\u7bb1"
+        },
+        "edit":{
+        "chef_profile":"\u5927\u53a8\u7b80\u4ecb"
+        },
+        "setting":{
+        "first":"\u8bbe\u7f6e"
+        },
+        "logout":{
+        "out":"\u9000\u51fa"
+        }
+        
+    },
+    "content":{
+    }
+}

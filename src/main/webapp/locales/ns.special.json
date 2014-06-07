@@ -1,0 +1,26 @@
+{
+    "headline": {
+        "cities":
+        {
+        "current_city":"ShangHai",
+        "ShangHai":"ShangHai",
+        },
+        "chef":
+        {
+        "find_a_chef":"Find a Chef"
+        },
+        "helper":
+        {
+        "help":"Help"
+        },
+        "signUper":{
+         "sign_up":"Sign Up"
+        },
+        "login_user":{
+        "login":"Log In"
+        },
+        "login_chef":{
+        "cooker":"I'm a Chef"
+        }        
+    }
+}

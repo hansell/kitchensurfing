@@ -26,7 +26,9 @@
 			</util:list>
 		</property>
 	</bean>
-
+	
+    
+    
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">
@@ -35,8 +37,10 @@
 			</list>
 		</property>
 	</bean>
-
-
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2000000"></property>
+    </bean>
+   
    	<bean 
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -50,5 +54,5 @@
     <mvc:view-controller path="/" view-name="redirect:/shanghai"/>
     <mvc:resources mapping="/pages/**" location="/" />
 	<mvc:default-servlet-handler />
-
+    
 </beans>

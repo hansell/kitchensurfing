@@ -6,7 +6,6 @@
 	<description>
     </description>
 	<display-name>Servlet and JSP Examples</display-name>
-
 	<!-- 容器bean工厂 -->
 	<context-param>
 		<param-name>contextClass</param-name>
