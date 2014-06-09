@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kitchensurfing.exception.CustomGenericException;
 
-@Controller
+
 public class MainController implements Serializable {
 
 	public MainController(){

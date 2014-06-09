@@ -74,9 +74,8 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 					e.printStackTrace();
 				}
 				user.setLastName(resultSet.getString("last_name"));
-				user.setLocationId(resultSet.getInt("location_id"));
 				user.setProfile_photo(resultSet.getString("profile_photo"));
-				user.setStatused(resultSet.getString("statused"));
+				user.setStatused(resultSet.getString("status"));
 				user.setUsername(resultSet.getString("username"));
 				user.setUserPassword(resultSet.getString("user_password"));
 			}});
@@ -139,7 +138,13 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 			}
 		});
 		if(i>0)
+		{
+			sql="select   *   from ks_user  u where u.account='"+user.getAccount()
+					+"' and u.user_password='"+user.getUserPassword()+"'";
+			List<User> list=this.jdbcTemplate.query(sql, new UserRowMapper());
+			user.setUserId(list.get(0).getUserId());
 			return true;
+		}
 		else 
 			return false;
 	}
@@ -234,9 +239,8 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 						e.printStackTrace();
 					}
 					user.setLastName(resultSet.getString("last_name"));
-					user.setLocationId(resultSet.getInt("location_id"));
 					user.setProfile_photo(resultSet.getString("profile_photo"));
-					user.setStatused(resultSet.getString("statused"));
+					user.setStatused(resultSet.getString("status"));
 					user.setUsername(resultSet.getString("username"));
 					user.setUserPassword(resultSet.getString("user_password"));
 					list.add(user);

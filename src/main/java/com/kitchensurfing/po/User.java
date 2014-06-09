@@ -15,7 +15,6 @@ public class User  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//field
 	private int userId;
-	private int locationId;
 	private String username;
 	private String account;
 	private String userPassword;
@@ -54,7 +53,6 @@ public class User  implements Serializable{
 	public User(int locationId, String username, String account,
 			String userPassword) {
 		super();
-		this.locationId = locationId;
 		this.username = username;
 		this.account = account;
 		this.userPassword = userPassword;
@@ -75,7 +73,6 @@ public class User  implements Serializable{
 			String lastName, String statused, String createUserDate) {
 		super();
 		this.userId = userId;
-		this.locationId = locationId;
 		this.username = username;
 		this.account = account;
 		this.userPassword = userPassword;
@@ -99,13 +96,7 @@ public class User  implements Serializable{
 		this.userId = userId;
 	}
 
-	public int getLocationId() {
-		return locationId;
-	}
 
-	public void setLocationId(int locationId) {
-		this.locationId = locationId;
-	}
 
 	public String getUsername() {
 		return username;
@@ -211,7 +202,6 @@ public class User  implements Serializable{
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result
 				+ ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + locationId;
 		result = prime * result
 				+ ((profile_photo == null) ? 0 : profile_photo.hashCode());
 		result = prime * result
@@ -265,8 +255,6 @@ public class User  implements Serializable{
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (locationId != other.locationId)
-			return false;
 		if (profile_photo == null) {
 			if (other.profile_photo != null)
 				return false;
@@ -294,7 +282,7 @@ public class User  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", locationId=" + locationId
+		return "User [userId=" + userId + ", locationId=" 
 				+ ", username=" + username + ", account=" + account
 				+ ", userPassword=" + userPassword + ", gender=" + gender
 				+ ", birthday=" + birthday + ", address=" + address

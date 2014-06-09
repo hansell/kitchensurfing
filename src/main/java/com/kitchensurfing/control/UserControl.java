@@ -58,7 +58,7 @@ public class UserControl implements Serializable{
 				request.getSession().setAttribute(AppConstants.SESSION_USER_STRING, user);
 				logger.info(user.getAccount()+"hava signed in successfully,Congraturations! we are you best kitchen helper ");
 				request.getSession().setAttribute("flag", "K+zCqTwUgEv0PZIDLJHrhstaCW/RIDyy2h2co6maUSY=");
-				path="redirect:/shanghai";
+				path="homepage";
 			}
 			else{
 				path="login";
@@ -110,7 +110,10 @@ public class UserControl implements Serializable{
 		try {
 			user = userService.addUser(req);
 			if (null != user)
-				req.getSession().setAttribute("user", user);
+			{		
+				user=userService.getUser(user.getAccount());
+				req.getSession().setAttribute(AppConstants.SESSION_USER_STRING, user);
+			}
 			// 调到登陆主界面
 			return "homepage";
 		} catch (Base64DecodingException e) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,9 +48,19 @@
 			</div>
 		</div>
 	</div>
-
+   
 
 	<div class="container chef-container">
+	   
+	    <c:if test="${msg!=null }">
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				<strong>提示信息:数据保存成功!<c:out value="${chef.userid }"></c:out></strong> 		
+		    </div>
+		</c:if>
+	
+	
 		<div class="row">
 			<div class="col-md-3">
 				<div class='chefnav'>
@@ -66,7 +77,7 @@
 
 			<div class="col-md-9" role="main">
 
-				<form role="form">
+				<form role="form" action="/KitchenSurfing/chef/chefBaseAdd.model">
 
 
 					<div class='infogroup'>
@@ -77,7 +88,7 @@
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">个人标签</label> <input type="email"
-								name="tagline" class="form-control" id="exampleInputEmail1"
+								name="tagline" class="form-control" value="<c:if test="${chef.tagLine!=null }"><c:out value="${chef.tagLine}"></c:out></c:if>"
 								placeholder="输入个人标签">
 						</div>
 
@@ -92,20 +103,20 @@
 
 						<div class="form-group">
 							<label for="exampleInputPassword1">烹饪方式</label>
-							<textarea class="form-control" rows="4" placeholder="输入您的个人烹饪技巧"></textarea>
+							<textarea class="form-control"  name="cookstyle" rows="4" placeholder="输入您的个人烹饪技巧" ><c:if test="${chef.cookstyle!=null }"><c:out value="${chef.cookstyle}"></c:out></c:if></textarea>
 						</div>
 						<div class="form-group">
 
 							<label for="exampleInputPassword1">您最喜欢的原料 </label>
 							<div class="row">
 								<div class="col-md-4">
-									<input type="text" class="form-control" placeholder="橄榄油">
+									<input type="text"  name="favoringredientone" value="<c:if test="${chef.favoringredientone!=null }"><c:out value="${chef.favoringredientone}"></c:out></c:if>" class="form-control" placeholder="橄榄油">
 								</div>
 								<div class="col-md-4">
-									<input type="text" class="form-control" placeholder="鳄梨">
+									<input type="text" name="favoringredienttwo" value="<c:if test="${chef.favoringredienttwo!=null }"><c:out value="${chef.favoringredienttwo}"></c:out></c:if>" class="form-control" placeholder="橄榄油" class="form-control" placeholder="鳄梨">
 								</div>
 								<div class="col-md-4">
-									<input type="text" class="form-control" placeholder="姜片">
+									<input type="text" name="favoringredientthree" value="<c:if test="${chef.favoringredientthree!=null }"><c:out value="${chef.favoringredientthree}"></c:out></c:if>" class="form-control" placeholder="橄榄油" class="form-control" placeholder="姜片">
 								</div>
 							</div>
 						</div>
@@ -123,14 +134,14 @@
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">关键字(最多输入5个)</label> <input
-								type="email" name="tagline" class="form-control"
-								id="exampleInputEmail1" placeholder="输入个人标签">
+								 name="personalkey" class="form-control"
+								 placeholder="个人关键字" value="<c:if test="${chef.personalkey!=null }"><c:out value="${chef.personalkey}"></c:out></c:if>">
 						</div>
 
 						<div class="form-group">
-							<label for="exampleInputEmail1">个人最擅长</label> <input type="email"
-								name="tagline" class="form-control" id="exampleInputEmail1"
-								placeholder="输入个人标签">
+							<label for="exampleInputEmail1">个人最擅长</label> <input 
+								name="personalspecial" class="form-control" 
+								placeholder="个人最擅长" value="<c:if test="${chef.personalspecial!=null }"><c:out value="${chef.personalspecial}"></c:out></c:if>">
 						</div>
 
 					</div>
@@ -144,25 +155,26 @@
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">facebook 地址</label> <input
-								type="email" name="tagline" class="form-control"
-								id="exampleInputEmail1" placeholder="输入个人标签">
+								name="weblocationone" class="form-control"
+								placeholder="facebook 地址" value="<c:if test="${chef.weblocationone!=null }"><c:out value="${chef.weblocationone}"></c:out></c:if>" >
 						</div>
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">twitter 地址</label> <input
-								type="email" name="tagline" class="form-control"
-								id="exampleInputEmail1" placeholder="输入个人标签">
+							    name="weblocationtwo" class="form-control"
+								value="<c:if test="${chef.weblocationtwo!=null }"><c:out value="${chef.weblocationtwo}"></c:out></c:if>" placeholder="twitter 地址">
 						</div>
 
 						<div class="form-group">
-							<label for="exampleInputEmail1">个人网址</label> <input type="email"
-								name="tagline" class="form-control" id="exampleInputEmail1"
-								placeholder="输入个人标签">
+							<label for="exampleInputEmail1">个人网址</label>
+						    <input name="weblocationthree" class="form-control" value="<c:if test="${chef.weblocationthree!=null }"><c:out value="${chef.weblocationthree}"></c:out></c:if>"
+								placeholder="个人网址">
 						</div>
 
 					</div>
 
 					<button type="submit" class="btn btn-default subbtn">提交</button>
+					
 				</form>
 
 

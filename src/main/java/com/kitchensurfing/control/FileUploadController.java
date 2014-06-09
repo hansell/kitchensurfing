@@ -37,7 +37,12 @@ public class FileUploadController implements Serializable{
     		HttpServletResponse response){
     	//1. build an iterator
         Iterator<String> itr =  request.getFileNames();
+        
+        request.getFile("");
+        
         MultipartFile mpf = null;
+        
+        
         //2 get file
         while(itr.hasNext()){
         	

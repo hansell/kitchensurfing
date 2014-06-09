@@ -11,9 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.iservice.IChefService;
 import com.kitchensurfing.po.Chef;
+import com.kitchensurfing.po.User;
+import com.kitchensurfing.util.ParamUtils;
 
 @Controller
 @RequestMapping("/chef")
@@ -45,10 +49,14 @@ public class ChefController implements Serializable {
 	
 	//返回厨师的基础页面
 	@RequestMapping("/chefBase.view")
-	public String chefBase()
+	public ModelAndView chefBase(HttpServletRequest req)
 	{
-		
-	   return "chefbase";
+		ModelAndView  mv=new ModelAndView("/chefview/chefbase");
+		ParamUtils.getRequestParamMap(req);
+	  	User user=(User)req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
+	  	Chef chef=this.chefser.getChefByUserid(user.getUserId());
+	  	mv.addObject("chef", chef);
+	    return mv;
 		
 	}
 	//返回厨师的基础页面
@@ -56,7 +64,7 @@ public class ChefController implements Serializable {
 	public String chefExprerience()
 	{
 		
-		return "chefexprerience";
+		return "/chefview/chefexprerience";
 		
 	}
 	//作息页面设置
@@ -64,7 +72,7 @@ public class ChefController implements Serializable {
 	public String chefLogistics()
 	{
 		
-		return "cheflogistics";
+		return "/chefview/cheflogistics";
 		
 	}
 	//图片上传页面设置
@@ -72,7 +80,7 @@ public class ChefController implements Serializable {
 	public String chefImage()
 	{
 		
-		return "chefimage";
+		return "/chefview/chefimage";
 		
 	}
 	//添加菜单
@@ -80,8 +88,21 @@ public class ChefController implements Serializable {
 	public String chefMenus()
 	{
 		
-		return "chefmenus";
+		return "/chefview/chefmenus";
 		
 	}
+	
+	//添加用户个人基本信息
+	@RequestMapping("/chefBaseAdd.model")
+	public ModelAndView chefBaseAdd(HttpServletRequest req)
+	{
+		ModelAndView  mv=new ModelAndView("/chefview/chefbase");
+		Chef chef=this.chefser.updateChefBase(req);
+	    System.out.println(chef.getUserid());
+		mv.addObject("chef", chef);
+		mv.addObject("msg","success");
+		return mv;
+	}
+
 	
 }

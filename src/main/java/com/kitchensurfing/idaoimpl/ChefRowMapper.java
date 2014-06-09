@@ -18,33 +18,28 @@ public class ChefRowMapper implements Serializable,RowMapper<Chef> {
 	public Chef mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		Chef chef=new Chef();
-		chef.setPhoto(resultSet.getString("photo"));
-		chef.setWorkNear(resultSet.getString("work_near"));
+		chef.setLocationId(resultSet.getInt("location_id"));
+		chef.setUserid(resultSet.getString("user_id"));
+		chef.setQq(resultSet.getString("qq"));
 		chef.setWebChat(resultSet.getString("webchat"));
-		chef.setVanityUrl(resultSet.getString("vanity_url"));
 		chef.setTravelPlace(resultSet.getString("travel_place"));
-		chef.setTrainingSchoolName(resultSet.getString("training_school_name"));
 		chef.setTagLine(resultSet.getString("tag_line"));
-		chef.setStatused(resultSet.getString("statused"));
-		chef.setSchoolLocation(resultSet.getString("school_location"));
+		chef.setStatus(resultSet.getString("status"));
 		chef.setQq(resultSet.getString("qq"));
 		chef.setPrice(resultSet.getString("price"));
 		chef.setPhone(resultSet.getString("phone"));
-		chef.setPersonalUrl(resultSet.getString("personal_url"));
 		chef.setLocationId(resultSet.getInt("location_id"));
-		chef.setExperience(resultSet.getString("experience"));
-		chef.setEmployerName(resultSet.getString("employer_name"));
-		chef.setChefPassword(resultSet.getString("chef_password"));
 		chef.setChefId(resultSet.getInt("chef_id"));
-		chef.setAvailableDay(resultSet.getString("available_day"));
-		chef.setAccount(resultSet.getString("account"));
-		chef.setApprovedManager(resultSet.getInt("approved_manager"));
-		chef.setApprovedTime(resultSet.getString("approved_time"));
-		chef.setPersonalDetails(resultSet.getString("personal_details"));
-		chef.setIsApproved(resultSet.getString("is_approved"));
-		chef.setTrueName(resultSet.getString("true_name"));
-		chef.setFirstName(resultSet.getString("first_name"));
-		chef.setLastName(resultSet.getString("last_name"));
+		chef.setAvailableDay(resultSet.getString("aviable_day"));
+		chef.setCookstyle(resultSet.getString("cookstyle"));
+		chef.setFavoringredientone(resultSet.getString("favoringredientone"));
+		chef.setFavoringredienttwo(resultSet.getString("favoringredienttwo"));
+		chef.setFavoringredientthree(resultSet.getString("favoringredientthree"));
+		chef.setWeblocationone(resultSet.getString("weblocationone"));
+		chef.setWeblocationtwo(resultSet.getString("weblocationtwo"));
+		chef.setWeblocationthree(resultSet.getString("weblocationthree"));
+		chef.setPersonalkey(resultSet.getString("personalkey"));
+		chef.setPersonalspecial(resultSet.getString("personalspecial"));
 		return chef;
 	}
 

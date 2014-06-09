@@ -13,10 +13,11 @@ import com.kitchensurfing.po.User.Gender;
 public class UserRowMapper implements Serializable,RowMapper<User> {
 
 	private static final long serialVersionUID = 114767036901851042L;
-	//Ä¬ÈÏÒÑ¾­Ö´ÐÐrs.next(),¿ÉÒÔÖ±½ÓÈ¡Êý¾Ý 
+	//Ä¬ï¿½ï¿½ï¿½Ñ¾ï¿½Ö´ï¿½ï¿½rs.next(),ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½È¡ï¿½ï¿½ï¿½ 
 	public User mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		User user=new User();
+		user.setUserId(resultSet.getInt("user_id"));
 		user.setAccount(resultSet.getString("account"));
 		user.setAddress(resultSet.getString("address"));
 		user.setBirthday(resultSet.getString("birthday"));
@@ -35,9 +36,8 @@ public class UserRowMapper implements Serializable,RowMapper<User> {
 			e.printStackTrace();
 		}
 		user.setLastName(resultSet.getString("last_name"));
-		user.setLocationId(resultSet.getInt("location_id"));
 		user.setProfile_photo(resultSet.getString("profile_photo"));
-		user.setStatused(resultSet.getString("statused"));
+		user.setStatused(resultSet.getString("status"));
 		user.setUsername(resultSet.getString("username"));
 		user.setUserPassword(resultSet.getString("user_password"));
 		return user;
