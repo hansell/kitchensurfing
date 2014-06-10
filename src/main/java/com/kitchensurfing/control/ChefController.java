@@ -17,7 +17,7 @@ import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.iservice.IChefService;
 import com.kitchensurfing.po.Chef;
 import com.kitchensurfing.po.User;
-import com.kitchensurfing.util.ParamUtils;
+//import com.kitchensurfing.util.ParamUtils;
 
 @Controller
 @RequestMapping("/chef")
@@ -52,7 +52,7 @@ public class ChefController implements Serializable {
 	public ModelAndView chefBase(HttpServletRequest req)
 	{
 		ModelAndView  mv=new ModelAndView("/chefview/chefbase");
-		ParamUtils.getRequestParamMap(req);
+		//ParamUtils.getRequestParamMap(req);
 	  	User user=(User)req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
 	  	Chef chef=this.chefser.getChefByUserid(user.getUserId());
 	  	mv.addObject("chef", chef);
