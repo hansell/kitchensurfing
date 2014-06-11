@@ -25,7 +25,7 @@ import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.serviceimpl.UserService;
 
-
+@Controller
 public class IndexController {
 	public static final String PAGE_INDEX = "homepage";
 	public static final String PAGE_SHOW = "show";
