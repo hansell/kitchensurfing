@@ -2,9 +2,11 @@ package com.kitchensurfing.control;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kitchensurfing.common.AppConstants;
 import com.kitchensurfing.common.MD5MessageDigest;
 import com.kitchensurfing.config.util.SendMailUtil;
+import com.kitchensurfing.handle.TokenHandler;
 import com.kitchensurfing.iservice.IUserService;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.serviceimpl.UserService;
@@ -36,7 +41,10 @@ public class UserControl implements Serializable{
 
 	}
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String logIn(){
+	public String logIn(HttpServletRequest req,HttpServletResponse res){
+		RequestContextHolder.getRequestAttributes().setAttribute("SPIRNGMVC.TOKEN", 
+				TokenHandler.generateGUID(req.getSession()), 
+				RequestAttributes.SCOPE_SESSION);
 		return "login";
 	}
 	@RequestMapping(value="/logout" ,method = RequestMethod.GET)
@@ -139,4 +147,36 @@ public class UserControl implements Serializable{
 		return model;
 
 	}
+	private synchronized boolean isTokenValid(HttpServletRequest request){
+		HttpSession session=request.getSession();
+		String sessionToken=(String) session.getAttribute("");
+		String requestToken=request.getParameter("");
+		if(requestToken==null){
+			//the hidden field wasn't provided
+			//throw new TokenException();
+		}
+		if(sessionToken==null){
+			//The session has lost the token
+		}
+		if(sessionToken.equals(requestToken)){
+			//Accept the submission and increment the token so this form can't be submitted again
+			session.setAttribute("", "");
+			return true;
+		}
+		return false;
+		
+	}
+	  public static String nextToken() {
+	        long seed = System.currentTimeMillis(); 
+	        Random r = new Random();
+	        r.setSeed(seed);
+	        return Long.toString(seed) + Long.toString(Math.abs(r.nextLong()));
+	    }
+	  public synchronized void resetToken(HttpServletRequest request) {
+		  HttpSession session = request.getSession(false);
+		  if (session == null) {
+		        return;
+		  }
+		  session.removeAttribute(AppConstants.DEFAULT_TOKEN_NAME);
+		  }
 }

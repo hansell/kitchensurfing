@@ -30,7 +30,7 @@ public class TokenHandler implements Serializable {
 		try{
 			Object obj=session.getAttribute("SPIRNGMVC.TOKEN");
 			if(obj==null){
-				springmvc_token=(Map<String, String>) session.getAttribute("SPRINGMVC.TOKEN");
+				//springmvc_token=(Map<String, String>) session.getAttribute("SPRINGMVC.TOKEN");
 				token=new BigInteger(165,new Random()).toString(36).toUpperCase();
 				springmvc_token.put(AppConstants.DEFAULT_TOKEN_NAME, token);
 				session.setAttribute("SPRINGMVC.TOKEN", springmvc_token);
