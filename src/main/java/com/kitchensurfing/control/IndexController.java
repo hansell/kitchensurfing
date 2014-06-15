@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kitchensurfing.common.AppConstants;
+import com.kitchensurfing.handle.TokenHandler;
 import com.kitchensurfing.po.User;
 import com.kitchensurfing.serviceimpl.UserService;
 
@@ -58,7 +59,8 @@ public class IndexController {
 		String view="homepage";
 		LOG.info("The client browser language is"+acceptLang);
 		if(user==null){
-			RequestContextHolder.getRequestAttributes().setAttribute("KEY_VALUE", "TEST_VALUE", 
+			RequestContextHolder.getRequestAttributes().setAttribute("SPIRNGMVC.TOKEN", 
+					TokenHandler.generateGUID(req.getSession()), 
 					RequestAttributes.SCOPE_SESSION);
 			req.setAttribute("lp", "shanghai");
 			return view;
