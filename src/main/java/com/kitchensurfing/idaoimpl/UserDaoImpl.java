@@ -33,6 +33,7 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.kitchensurfing.exception.InvalidGenderException;
 import com.kitchensurfing.idao.IUserDao;
 import com.kitchensurfing.po.User;
@@ -49,6 +50,7 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 	 * RowCallbackHandler method uage
 	 * <T> List<T> query(String sql, RowCallbackHandler<T> rowCallbackHandler)
 	 */
+	@TriggersRemove(cacheName="cache",removeAll=true)
 	public User getUserById(final int userId){
 		final User user=new User();
 		String sql="SELECT * FROM KS_USER U WHERE U.USER_ID = ?";
@@ -75,7 +77,7 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 				}
 				user.setLastName(resultSet.getString("last_name"));
 				user.setProfile_photo(resultSet.getString("profile_photo"));
-				user.setStatused(resultSet.getString("status"));
+				user.setStatused(resultSet.getString("statused"));
 				user.setUsername(resultSet.getString("username"));
 				user.setUserPassword(resultSet.getString("user_password"));
 			}});
@@ -240,7 +242,7 @@ public class UserDaoImpl  extends BaseDaoImpl implements IUserDao {
 					}
 					user.setLastName(resultSet.getString("last_name"));
 					user.setProfile_photo(resultSet.getString("profile_photo"));
-					user.setStatused(resultSet.getString("status"));
+					user.setStatused(resultSet.getString("statused"));
 					user.setUsername(resultSet.getString("username"));
 					user.setUserPassword(resultSet.getString("user_password"));
 					list.add(user);

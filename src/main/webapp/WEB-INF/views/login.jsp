@@ -101,7 +101,7 @@
 							<div style="margin: 0; padding: 0; display: inline">
 								<input name="utf8" type="hidden" value="${msg }" id="KzCqTwUgEv0PZIDL"><input
 									name="authenticity_token" type="hidden"
-									value="K+zCqTwUgEv0PZIDLJHrhstaCW/RIDyy2h2co6maUSY=">
+									value="${SPRINGMVC_TOKEN}">
 							</div>
 							<div class="control-group email optional">
 								<div class="controls">

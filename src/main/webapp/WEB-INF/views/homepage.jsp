@@ -289,12 +289,7 @@ background:grey;
 						</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="?setLng=zh-CN" data-i18n="headline.language.Chinese"></a></li>
-								<li><a href="#" data-i18n="headline.language.Chinese_TW"></a></li>
 								<li><a href="?setLng=en-US" data-i18n="headline.language.English"></a></li>
-								<li><a href="#" data-i18n="headline.language.French"></a></li>
-								<li><a href="#" data-i18n="headline.language.Korean"></a></li>
-								<li><a href="#" data-i18n="headline.language.Japanese"></a></li>
-								
 							</ul>
 						</li>
 					</ul>
@@ -743,11 +738,11 @@ background:grey;
 
 
 	</footer>
-		<script src="${pageContext.request.contextPath}/plugin/jquery/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/plugin/sea.js"></script>
-	<script src="${pageContext.request.contextPath}/plugin/bootstap/js/bootstrap.js"></script>
+		<script src="<%=request.getContextPath()%>/plugin/jquery/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/plugin/sea.js"></script>
+	<script src="<%=request.getContextPath()%>/plugin/bootstap/js/bootstrap.js"></script>
 
-<script src="${pageContext.request.contextPath}/plugin/i18next-1.7.3.js"></script>
+<script src="<%=request.getContextPath()%>/plugin/i18next-1.7.3.js"></script>
 	<script type="text/javascript">
 	
      seajs.config({
@@ -773,7 +768,7 @@ background:grey;
         debug: true
     }, function() {
       
-        alert($.t('headline.cities.ShangHai'));
+     alert($.t('headline.cities.ShangHai'));
        
         $('#hamburger-menu').i18n();
        // $('#extendedAttr').i18n();
@@ -782,4 +777,6 @@ background:grey;
 
 	</script>
 </body>
+<%=request.getContextPath()%>
+${pageContext.request.contextPath}
 </html>
