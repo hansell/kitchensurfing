@@ -233,57 +233,6 @@ background:grey;
 
 </head>
 <body>
-		<div class="navbar   navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="<%=request.getContextPath()%>/shanghai#"><img
-					alt="Kitchensurfing-logo-cropped@2x" class="img-responsive"
-					height="19"
-					src="<%=request.getContextPath()%>/project/images/kitchensurfing-logo-cropped@2x-0d9f82384215fb931c20e51a4ed8b3b8.png"
-					width="161"></a>
-
-			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="dropdown hidden-xs hidden-sm" id="city-dropdown"><a
-						class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/shanghai#"> <span>上海</span>
-							<span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<%=request.getContextPath()%>/shanghai">上海</a></li>
-							<li><a href="<%=request.getContextPath()%>/beijing">北京</a></li>
-						    <li><a
-									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming">Other</a></li>
-							
-						</ul></li>
-					<li><a
-							href="<%=request.getContextPath()%>/menus?source=header" id="find-chef" data-i18n="headline.chef.find_a_chef"></a></li>
-						<li><a href="<%=request.getContextPath()%>/help=center"
-							class="help-center-link" data-i18n="headline.helper.help"></a></li>
-						<li class="dropdown hidden-xs hidden-sm" id="language-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"
-							href="<%=request.getContextPath()%>/CN"> <span>Language</span> <span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="?setLng=zh-CN" data-i18n="headline.language.Chinese"></a></li>
-								<li><a href="?setLng=en-US" data-i18n="headline.language.English"></a></li>
-							</ul>
-						</li>
-					<li><a href="<%=request.getContextPath()%>/blog">博客</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-		<script src="<%=request.getContextPath()%>/plugin/jquery/jquery.js"></script>
-	<script src="<%=request.getContextPath()%>/plugin/sea.js"></script>
-	<script src="<%=request.getContextPath()%>/plugin/bootstap/js/bootstrap.js"></script>
-
-<script src="<%=request.getContextPath()%>/plugin/i18next-1.7.3.js"></script>
+	
 </body>
 </html>

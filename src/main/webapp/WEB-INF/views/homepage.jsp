@@ -283,6 +283,7 @@ background:grey;
 							href="<%=request.getContextPath()%>/menus?source=header" id="find-chef" data-i18n="headline.chef.find_a_chef"></a></li>
 						<li><a href="<%=request.getContextPath()%>/help=center"
 							class="help-center-link" data-i18n="headline.helper.help"></a></li>
+							<li><a href="<%=request.getContextPath()%>/blog">博客</a></li>
 						<li class="dropdown hidden-xs hidden-sm" id="language-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"
 							href="<%=request.getContextPath()%>/CN"> <span>Language</span> <span class="caret"></span>
@@ -318,9 +319,9 @@ background:grey;
 			          </a>
 			            <ul class="dropdown-menu" role="menu">
 			            <li><a href="${pageContext.request.contextPath}/chefs/edit?tab=about_me" data-i18n="headline.edit.chef_profile"></a></li>
-			            <li><a href="${pageContext.request.contextPath}/usercontrol/account"> <span class="translation_missing" title="translation missing:en.new_homepage.setting" data-i18n="headline.setting.first"></span>
+			            <li><a href="${pageContext.request.contextPath}/account"> <span class="translation_missing" title="translation missing:en.new_homepage.setting" data-i18n="headline.setting.first"></span>
 			            </a></li>
-			            <li><a href="${pageContext.request.contextPath}/usercontrol/logout"><span class="translation_missing" title="translation missing:en.new_homepage.log_out" data-i18n="headline.logout.out"></span>
+			            <li><a href="${pageContext.request.contextPath}/logout"><span class="translation_missing" title="translation missing:en.new_homepage.log_out" data-i18n="headline.logout.out"></span>
 			            </a></li>
 			            </ul>
 			          </li>
@@ -330,7 +331,7 @@ background:grey;
 			   <ul class="nav navbar-nav header-nav user-nav logged-out-user-nav">
 					<li><a href="<%=request.getContextPath()%>/account/sign-up?source=header"
 						class="sign-up-or-log-in" data-i18n="headline.signUper.sign_up"></a></li>
-					<li><a href="<%=request.getContextPath()%>/usercontrol/login" class="sign-up-or-log-in" data-i18n="headline.login_user.login">
+					<li><a href="<%=request.getContextPath()%>/login" class="sign-up-or-log-in" data-i18n="headline.login_user.login">
 							</a></li>
 					<li class="im-a-chef-wrapper"><a class="btn im-a-chef"
 						href="<%=request.getContextPath()%>/chefs" role="button" data-i18n="headline.Im_chef.cooker"></a></li>
