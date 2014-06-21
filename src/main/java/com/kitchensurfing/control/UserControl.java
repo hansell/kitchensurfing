@@ -88,24 +88,27 @@ public class UserControl implements Serializable{
 	}
 	
 	@RequestMapping(value="/account",method=RequestMethod.GET)  
-	public String Setting(HttpServletRequest req,HttpServletResponse res) {
+	public String inAccount(HttpServletRequest req,HttpServletResponse res) {
 		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
 		if(user==null){
 			logger.warn("Sorry,you operation has encountered a big problem");
 			return "redirect:/shanghai";
 		}
-		else
-			return "settings";
+		else{
+			req.setAttribute("user", user);
+			return "userview/account";
+		
+		}
 	}
 	@RequestMapping(value="/settings",method=RequestMethod.GET)  
-	public String Account(HttpServletRequest req,HttpServletResponse res) {
+	public String inSettings(HttpServletRequest req,HttpServletResponse res) {
 		User user=(User) req.getSession().getAttribute(AppConstants.SESSION_USER_STRING);
 		if(user==null){
 			logger.warn("Sorry,you operation has encountered a big problem");
 			return "redirect:/shanghai";
 		}
 		else
-			return "account";
+			return "userview/settings";
 	}
 	@RequestMapping("/zh")
 	public String zh(){

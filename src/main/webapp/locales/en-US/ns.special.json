@@ -16,7 +16,7 @@
         "help":"Help"
         },
          "language":{
-         "Chinese":"Simplify Chinese",
+         "Chinese":"Chinese",
          "Chinese_TW":"Traditional Chinese",
          "English":"English",
          "French":"French",
@@ -43,6 +43,9 @@
         },
         "logout":{
         "out":"Log Out"
+        },
+         "blog":{
+        "blog":"Blog"
         }
     }
 }
