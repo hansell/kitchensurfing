@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.kitchensurfing.org/kittags"  prefix="kittags" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,9 @@
 <link rel="stylesheet" href="/KitchenSurfing/project/css/chef/chef.css">
 </head>
 <body>
+
+   <kittags:citylocation/>
+  
 	<div class="navbar   navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">

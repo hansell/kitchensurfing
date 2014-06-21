@@ -83,15 +83,19 @@
 					</div>
 
 
-					<div class='infogroup'>
+					<div class='infogroup  trainexcontainer'>
 
 						<h3>培训经历</h3>
 
 						<div class='infosplit'></div>
 
-                         <div class='additem'>
+                         <div class='additem addTrain'>
                              <span class="glyphicon glyphicon-plus"></span> 添加培训经历
                          </div>
+                         
+                         <div class='trainexitems'>
+                               
+                        </div> 
 
 					</div>
 					
@@ -110,16 +114,53 @@
 					<button type="submit" class="btn btn-default subbtn">提交</button>
 				</form>
 
-
-
 			</div>
 		</div>
 	</div>
 
+   <!-- 添加模板 (增加培训经历)-->
+<script type="text/template" id="tpl-trainexadd">
+
+                      <div style="padding: 8px;border: 1px solid #cccccc;border-radius: 12px;margin-bottom: 5px;">
+                             <div  style='height: 25px;'>
+                                <div  style="float:right;">
+	                                <button type="button" class="btn btn-primary  btn-sm  save">保存</button>
+	                                <button type="button" class="btn btn-success  btn-sm  cancel">取消</button>
+                                </div>
+                             </div>
+	                         <div class="form-group">
+							    <label for="begindate">开始日期</label>
+							    <input type="text" name='startdate' class="form-control" id="begindate" placeholder="开始日期">
+							  </div>
+							  
+							  <div class="form-group">
+							    <label for="enddate">截止日期</label>
+							    <input type="text" name='enddate'  class="form-control" id="enddate" placeholder="截止日期">
+							  </div>
+	                         
+	                          <div class="form-group">
+							    <label for="traincontent">培训内容</label>
+							    <textarea rows="5" class='form-control traincontent'  placeholder="培训内容"></textarea>
+							  </div>
+                       </div> 
+</script>
+
+
+
+
 	<script src="/KitchenSurfing/plugin/jquery/jquery.js"></script>
-	<script src="/KitchenSurfing/plugin/bootstap/js/bootstrap.js"></script>
+	<!-- 引入backbone -->
 	<script
-		src="/KitchenSurfing/plugin/bootstrap-plugin/dialog/js/bootstrap-dialog.min.js"></script>
+		src="/KitchenSurfing/plugin/backbone/underscore.js"></script>
+	<script
+		src="/KitchenSurfing/plugin/backbone/backbone.js"></script>
+	<script
+		src="/KitchenSurfing/project/js/chef/chefview.js"></script>
+	<script type="text/javascript">
+            var trainviews=new TrainExViews();
+	            
+	
+	</script>
 
 </body>
 </html>

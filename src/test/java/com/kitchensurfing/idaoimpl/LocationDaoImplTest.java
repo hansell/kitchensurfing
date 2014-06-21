@@ -22,11 +22,9 @@ public class LocationDaoImplTest {
 	public void testGetLocation() {
 		//----test by  id
 		Location l=ds.getLocation(1);
-		System.out.println(l.getLocationCreateDate()+"----"+l.getLocationName()+l.getLocationEnglishCode());
 		//--test by name
 
 		Location ld=ds.getLocation("shanghai");
-		System.out.println(ld.getLocationCreateDate()+"----"+ld.getLocationName()+ld.getLocationEnglishCode());
 	}
 	@Test
 	public void testGetRowCount(){
@@ -35,7 +33,6 @@ public class LocationDaoImplTest {
 	@Test
 	public void testGetList(){
     for(Location l:ds.getLocation())
-    	System.out.println(l.getLocationCreateDate()+"----"+l.getLocationName()+l.getLocationEnglishCode());
      assertTrue(ds.getLocation().size()==1);
 	}
 }
