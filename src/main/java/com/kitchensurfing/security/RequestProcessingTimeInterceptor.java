@@ -42,7 +42,7 @@ implements Serializable {
 		long executeTime = endTime - startTime;
 
 		//modified the exisitng modelAndView
-		modelAndView.addObject("executeTime",executeTime);
+		//modelAndView.addObject("executeTime",executeTime);
 
 		//log it
 		if(logger.isDebugEnabled()){

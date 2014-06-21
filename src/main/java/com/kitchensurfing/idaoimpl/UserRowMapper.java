@@ -37,7 +37,7 @@ public class UserRowMapper implements Serializable,RowMapper<User> {
 		}
 		user.setLastName(resultSet.getString("last_name"));
 		user.setProfile_photo(resultSet.getString("profile_photo"));
-		user.setStatused(resultSet.getString("statused"));
+		//user.setStatused(resultSet.getString("statused"));
 		user.setUsername(resultSet.getString("username"));
 		user.setUserPassword(resultSet.getString("user_password"));
 		return user;
