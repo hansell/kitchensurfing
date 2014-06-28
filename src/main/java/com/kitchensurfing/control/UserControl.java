@@ -29,7 +29,7 @@ import com.kitchensurfing.serviceimpl.UserService;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 
 @Controller
-@RequestMapping("/usercontrol")
+
 public class UserControl implements Serializable{
 
 	private static final Logger logger=Logger.getLogger(UserControl.class);
