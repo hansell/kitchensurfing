@@ -1,6 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <%
@@ -14,13 +16,29 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/plugin/bootstap/css/bootstrap.css">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/project/css/chef/chef.css">
+	href="<%=request.getContextPath()%>/project/css/user/user_483293djdeuweuww3.css">
 <meta content="website" property="og:type">
 <meta
 	content="KitchenSurfing is a community for a unique food and social experience. Meet, cook and eat together,
  host a dinner or join others. Food brings people from any culture all over the world together."
 	property="og:description">
 <meta content="" property="og:url">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/plugin/bootstap/css/bootstrap.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/project/css/user/user_483293djdeuweuww3.css">
+<!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="images/apple-touch-icon-114x114.png">
+<style type="text/css">
+
+</style>
 </head>
 <body>
 	<div class="navbar   navbar-fixed-top" role="navigation">
@@ -42,37 +60,171 @@
 			<div class="collapse navbar-collapse" id="hamburger-head">
 				<ul class="nav navbar-nav">
 					<li class="dropdown hidden-xs hidden-sm" id="city-dropdown"><a
-						class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/shanghai"> <span data-i18n="headline.cities.ShangHai" id="current_city"></span>
+						class="dropdown-toggle" data-toggle="dropdown"
+						href="<%=request.getContextPath()%>/shanghai"> <span
+							data-i18n="headline.cities.ShangHai" id="current_city"></span> <span
+							class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<%=request.getContextPath()%>/shanghai"
+								id="current-shanghai" data-i18n="headline.cities.ShangHai"></a></li>
+							<li><a href="<%=request.getContextPath()%>/beijing"
+								id="current-beijing" data-i18n="headline.cities.BeiJing"></a></li>
+							<li><a
+								href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming"
+								data-i18n="headline.cities.Other" id="current-other"></a></li>
+						</ul></li>
+					<li><a class="active"
+						href="<%=request.getContextPath()%>/menus?source=header"
+						id="find-chef" data-i18n="headline.chef.find_a_chef"></a></li>
+
+					<li><a href="<%=request.getContextPath()%>/help=center"
+						class="help-center-link" data-i18n="headline.helper.help"></a></li>
+					<li><a href="<%=request.getContextPath()%>/blog"
+						data-i18n="headline.blog.blog"></a></li>
+					<li class="dropdown hidden-xs hidden-sm" id="language-dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown"
+						href="<%=request.getContextPath()%>/CN"> <span>Language</span>
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="<%=request.getContextPath()%>/shanghai" id="current-shanghai" data-i18n="headline.cities.ShangHai"></a></li>
-							<li><a href="<%=request.getContextPath()%>/beijing" id="current-beijing" data-i18n="headline.cities.BeiJing"></a></li>
-								<li><a
-									href="<%=request.getContextPath()%>/promo/kitchensurfing-is-coming" data-i18n="headline.cities.Other" id="current-other"></a></li>
-						</ul></li>
-							<li><a class="active"
-							href="<%=request.getContextPath()%>/menus?source=header" id="find-chef" data-i18n="headline.chef.find_a_chef"></a></li>
-					
-					<li><a href="<%=request.getContextPath()%>/help=center"
-							class="help-center-link" data-i18n="headline.helper.help"></a></li>
-							<li><a href="<%=request.getContextPath()%>/blog" data-i18n="headline.blog.blog"></a></li>
-						<li class="dropdown hidden-xs hidden-sm" id="language-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"
-							href="<%=request.getContextPath()%>/CN"> <span>Language</span> <span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="?setLng=zh-CN" data-i18n="headline.language.Chinese"></a></li>
-								<li><a href="?setLng=en-US" data-i18n="headline.language.English"></a></li>
-							</ul>
-						</li>
+							<li><a href="?setLng=zh-CN"
+								data-i18n="headline.language.Chinese"></a></li>
+							<li><a href="?setLng=en-US"
+								data-i18n="headline.language.English"></a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-<script src="<%=request.getContextPath()%>/plugin/jquery/jquery.js"></script>	
- <script src="<%=request.getContextPath()%>/plugin/bootstap/js/bootstrap.js"></script>
- <script data-main="plugin/app" src="<%=request.getContextPath()%>/plugin/require.js" defer async="true"></script>
+	<div class="subnavigation">
+		<div class="container">
+			<ul class="unstyled">
+
+
+			</ul>
+		</div>
+	</div>
+	<div class="notifications"></div>
+	<div class="container user-container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class='user_nav'>
+					<ul class="slider">
+						<li class=""><a href="<%=request.getContextPath()%>/account"><i
+								class="glyphicon glyphicon-send"></i>&nbsp;&nbsp;账户</a></li>
+						<li class=""><a href="<%=request.getContextPath()%>/settings"><i
+								class="glyphicon glyphicon-picture"></i>&nbsp;&nbsp;简介</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9" role="main">
+				<form accept-charset="UTF-8" action="" class="simple_form edit_user"
+					id="edit_user_5365bbf267ec88c1c300000c" method="post"
+					novalidate="novalidate">
+					<div class='infogroup'>
+
+						<h3>基本信息</h3>
+
+						<div class='infosplit'></div>
+
+						<div class="form-group string">
+							<label for="usernameWarning" class="">* 姓名</label><br>
+							<div class="col-xs-5">
+								<input type="text" name="username" class="form-control"
+									value="<c:if test="${chef.tagLine!=null }"><c:out value="${chef.tagLine}"></c:out></c:if>"
+									placeholder="输入姓名">
+							</div>
+
+							<br> <br>
+						</div>
+						<div class="form-group">
+							<label class=" " for="user_birthday">* 生日</label>
+							<div>
+								<ul class="nav nav-pills">
+									<li class="dropdown"><a href="#" data-toggle="dropdown"
+										class="dropdown-toggle">Day <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Inbox</a></li>
+										</ul></li>
+								</ul>
+                                 <ul class="nav nav-pills">
+									<li class="dropdown"><a href="#" data-toggle="dropdown"
+										class="dropdown-toggle">Month <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Inbox</a></li>
+										</ul></li>
+								</ul>
+								<ul class="nav nav-pills">
+									<li class="dropdown"><a href="#" data-toggle="dropdown"
+										class="dropdown-toggle">Year <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Inbox</a></li>
+										</ul></li>
+								</ul>
+							</div>
+							    <div class="control-group">  
+            
+        </div> 
+						</div>
+						<div class="form-group">
+							<label class=" " for="user_birthday">* 语言</label>
+							<div>
+								<select class="form-control">
+									<option value="chinese">中文</option>
+									<option value="english">英语</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group section-header">
+                           <h2 class="section-headline">上传你的照片</h2>
+                         </div>
+                         <div class="form-group inner photo-description">
+                           <p>
+                                 <strong>请上传能展现你风采的照片</strong>
+                           </p>
+                           <p>.png, .gif .jpg 等格式照片，并且小于2M.</p>
+                           <div class="account-photo">
+<input id="photo_filename" name="photo_filename" type="hidden">
+<input type="file" class="filestyle" data-buttonText="Find file" data-buttonName="btn-primary">
+
+<div class="image-box">
+<div class="progress">
+<div class="spinner"></div>
+<div class="progress-bar">
+<div class="bar"></div>
+</div>
+</div>
+<div class="image-shadow">
+
+</div>
+</div>
+</div>
+                           </div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10" style="align:center">
+								
+								<button type="submit" class="btn btn-default subbtn ">提交</button>
+							</div>
+						</div>
+					</div>	
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<script src="<%=request.getContextPath()%>/plugin/jquery/jquery.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/plugin/bootstap/js/bootstrap.js"></script>
+	<script data-main="plugin/app"
+		src="<%=request.getContextPath()%>/plugin/require.js" defer
+		async="true"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/plugin/bootstrap-filestyle.js"> </script>
+	<script type="text/javascript">
+	$(":file").filestyle({input: false},{icon:true},{buttonText:"Find file"}
+	,{buttonName:"btn-primary"});
+	</script>
 </body>
->>>>>>> 279f1dd0cddfb3d696fba80a5c7748e045830431
+
 </html>
